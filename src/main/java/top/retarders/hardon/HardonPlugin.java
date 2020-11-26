@@ -30,8 +30,8 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
     @Override
     protected void enable() {
         // connect to database
-        this.globalCredentials = MongoDatabaseCredentials.fromConfig(this.loadConfig("mongo.yml"));
-        this.globalDataSource = this.getMongo(this.globalCredentials);
+        this.globalCredentials = MongoDatabaseCredentials.of("127.0.0.1", 27017, "hardon", "dev", "dev");
+        this.globalDataSource = this.getMongo();
         this.globalDataSource.bindWith(this);
 
         // kinda di
