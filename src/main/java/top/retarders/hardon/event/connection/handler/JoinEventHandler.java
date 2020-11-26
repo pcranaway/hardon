@@ -1,0 +1,31 @@
+package top.retarders.hardon.event.connection.handler;
+
+import me.lucko.helper.Helper;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
+import top.retarders.hardon.user.User;
+import top.retarders.hardon.user.repo.UserRepository;
+
+import java.util.function.Consumer;
+
+public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
+
+    private UserRepository repository = Helper.service(UserRepository.class).get();
+
+    @Override
+    public void accept(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
+        player.teleport(Helper.world("world").get().getSpawnLocation());
+        player.sendMessage(ChatColor.GREEN + "Welcome to Hardon");
+
+        User user = new User(player.getUniqueId());
+        this.repository.put(user);
+
+        user.loadAccount();
+
+        player.sendMessage(user.account.toString());
+    }
+
+}
