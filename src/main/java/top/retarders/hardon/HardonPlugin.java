@@ -7,8 +7,12 @@ import me.lucko.helper.mongo.MongoProvider;
 import me.lucko.helper.mongo.plugin.HelperMongo;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import top.retarders.hardon.command.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.statistics.StatisticsListener;
+import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.user.repo.UserRepository;
 
 @Plugin(
@@ -40,15 +44,22 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         this.provideService(Mongo.class, this.globalDataSource);
 
         this.provideService(UserRepository.class, new UserRepository());
+        this.provideService(KitRepository.class, new KitRepository());
+
+        // load kits
+        this.getService(KitRepository.class).loadKits();
 
         // register listeners
         this.bindModule(new ConnectionListener());
         this.bindModule(new StatisticsListener());
 
+        // register commands
+        this.bindModule(new KitsCommandsModule());
+
         // schedule accounts save task every 15 seconds (not sure if that's a bad idea)
         Schedulers.async().runRepeating(() -> {
             this.getService(UserRepository.class).users.forEach(user -> this.globalDataSource.getMorphiaDatastore().save(user.account));
-        }, 100L, 15 * 20L);
+        }, 15 * 20L, 15 * 20L);
     }
 
     @Override

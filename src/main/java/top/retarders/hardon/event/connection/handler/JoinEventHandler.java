@@ -24,8 +24,6 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
         this.repository.put(user);
 
         user.loadAccount();
-
-        player.sendMessage(user.account.toString());
     }
 
 }
