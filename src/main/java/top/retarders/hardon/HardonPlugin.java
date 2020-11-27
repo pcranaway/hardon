@@ -26,7 +26,6 @@ import top.retarders.hardon.user.repo.UserRepository;
                 "helper-mongo"
         }
 )
-@MavenLibrary(groupId = "com.google.guava", artifactId = "guava", version = "19.0")
 public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
 
     private MongoDatabaseCredentials globalCredentials;
@@ -34,9 +33,6 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
 
     @Override
     protected void enable() {
-        // load libraries (IMPORTANT!)
-        LibraryLoader.loadAll(this);
-
         // load config
         this.saveDefaultConfig();
 
