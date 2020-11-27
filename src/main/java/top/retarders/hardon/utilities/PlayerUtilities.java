@@ -1,5 +1,6 @@
 package top.retarders.hardon.utilities;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -24,6 +25,7 @@ public class PlayerUtilities {
         player.setHealth(player.getMaxHealth());
         player.setFoodLevel(20); // this might be 10, not sure
         player.setExp(0);
+        player.setGameMode(GameMode.SURVIVAL);
     }
 
 }
