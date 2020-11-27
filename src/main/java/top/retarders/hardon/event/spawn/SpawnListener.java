@@ -11,6 +11,7 @@ import top.retarders.hardon.event.spawn.handler.InteractEventHandler;
 import top.retarders.hardon.event.spawn.handler.JoinEventHandler;
 import top.retarders.hardon.spawn.SpawnItems;
 import top.retarders.hardon.user.repo.UserRepository;
+import top.retarders.hardon.user.state.UserState;
 
 public class SpawnListener implements TerminableModule {
 
@@ -27,6 +28,7 @@ public class SpawnListener implements TerminableModule {
                 .filter(event -> event.hasItem())
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
                 .filter(event -> SpawnItems.isSpawnItem(event.getItem()))
+                .filter(event ->  this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
                 .handler(new InteractEventHandler())
                 .bindWith(consumer);
     }

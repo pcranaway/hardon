@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
+import top.retarders.hardon.user.state.UserState;
 
 public class KitSelectorGui extends Gui {
 
@@ -34,6 +35,7 @@ public class KitSelectorGui extends Gui {
 
                     kit.equip(getPlayer());
                     user.kit = kit;
+                    user.state = UserState.WARZONE;
                 })));
     }
 

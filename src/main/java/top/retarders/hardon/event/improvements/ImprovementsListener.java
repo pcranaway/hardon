@@ -7,8 +7,9 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 
 public class ImprovementsListener implements TerminableModule {
     @Override
-    public void setup(TerminableConsumer terminableConsumer) {
+    public void setup(TerminableConsumer consumer) {
         Events.subscribe(FoodLevelChangeEvent.class)
-                .handler(event -> event.setCancelled(true));
+                .handler(event -> event.setCancelled(true))
+                .bindWith(consumer);
     }
 }

@@ -14,6 +14,7 @@ import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.improvements.ImprovementsListener;
 import top.retarders.hardon.event.spawn.SpawnListener;
 import top.retarders.hardon.event.statistics.StatisticsListener;
+import top.retarders.hardon.event.warzone.WarzoneListener;
 import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.user.repo.UserRepository;
 
@@ -59,6 +60,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         this.bindModule(new StatisticsListener());
         this.bindModule(new SpawnListener());
         this.bindModule(new ImprovementsListener());
+        this.bindModule(new WarzoneListener());
 
         // register commands
         this.bindModule(new KitsCommandsModule());
