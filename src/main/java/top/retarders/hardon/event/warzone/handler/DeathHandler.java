@@ -1,6 +1,9 @@
 package top.retarders.hardon.event.warzone.handler;
 
 import me.lucko.helper.text3.Text;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.function.Consumer;
@@ -9,7 +12,10 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
     @Override
     public void accept(PlayerDeathEvent event) {
-        event.setDeathMessage(Text.colorize("%s &7was killed by &f%s"));
+        Player player = event.getEntity();
+        Player killer = (Player) ((EntityDamageByEntityEvent) (player.getLastDamageCause())).getDamager();
+
+        event.setDeathMessage(player.getName() + ChatColor.GRAY + " was killed by " + ChatColor.WHITE + killer.getName());
     }
 
 }
