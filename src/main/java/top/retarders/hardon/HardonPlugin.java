@@ -7,8 +7,6 @@ import me.lucko.helper.mongo.MongoProvider;
 import me.lucko.helper.mongo.plugin.HelperMongo;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import top.retarders.hardon.command.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.statistics.StatisticsListener;
@@ -34,7 +32,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
     @Override
     protected void enable() {
         // connect to database
-        this.globalCredentials = MongoDatabaseCredentials.of("127.0.0.1", 27017, "hardon", "dev", "dev");
+        this.globalCredentials = MongoDatabaseCredentials.fromConfig(this.loadConfig("mongo.yml"));
         this.globalDataSource = this.getMongo(this.globalCredentials);
         this.globalDataSource.bindWith(this);
 

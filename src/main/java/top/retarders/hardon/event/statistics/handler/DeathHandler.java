@@ -4,7 +4,6 @@ import me.lucko.helper.Helper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import top.retarders.hardon.HardonPlugin;
 import top.retarders.hardon.account.Account;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;

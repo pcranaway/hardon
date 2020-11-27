@@ -2,8 +2,6 @@ package top.retarders.hardon.account;
 
 import me.lucko.helper.mongo.external.morphia.annotations.Entity;
 import me.lucko.helper.mongo.external.morphia.annotations.Id;
-import me.lucko.helper.mongo.external.morphia.annotations.Transient;
-import top.retarders.hardon.user.User;
 
 import java.util.UUID;
 
