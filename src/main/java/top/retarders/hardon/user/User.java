@@ -6,6 +6,7 @@ import me.lucko.helper.mongo.external.morphia.Datastore;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import top.retarders.hardon.account.Account;
+import top.retarders.hardon.kit.Kit;
 import top.retarders.hardon.user.state.UserState;
 
 import java.util.UUID;
@@ -17,11 +18,13 @@ public class User {
     public Account account;
 
     public UserState state;
+    public Kit kit;
     public AtomicInteger killstreak;
 
     public User(UUID uuid) {
         this.uuid = uuid;
 
+        this.kit = null;
         this.state = UserState.SPAWN;
         this.killstreak = new AtomicInteger(0);
 

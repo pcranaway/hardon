@@ -11,6 +11,7 @@ import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
 import top.retarders.hardon.command.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
+import top.retarders.hardon.event.spawn.SpawnListener;
 import top.retarders.hardon.event.statistics.StatisticsListener;
 import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.user.repo.UserRepository;
@@ -55,6 +56,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         // register listeners
         this.bindModule(new ConnectionListener());
         this.bindModule(new StatisticsListener());
+        this.bindModule(new SpawnListener());
 
         // register commands
         this.bindModule(new KitsCommandsModule());
