@@ -1,6 +1,8 @@
 package top.retarders.hardon;
 
 import me.lucko.helper.Schedulers;
+import me.lucko.helper.maven.LibraryLoader;
+import me.lucko.helper.maven.MavenLibrary;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.MongoDatabaseCredentials;
 import me.lucko.helper.mongo.MongoProvider;
@@ -24,6 +26,7 @@ import top.retarders.hardon.user.repo.UserRepository;
                 "helper-mongo"
         }
 )
+@MavenLibrary(groupId = "com.google.guava", artifactId = "guava", version = "19.0")
 public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
 
     private MongoDatabaseCredentials globalCredentials;
@@ -31,6 +34,9 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
 
     @Override
     protected void enable() {
+        // load libraries (IMPORTANT!)
+        LibraryLoader.loadAll(this);
+
         // load config
         this.saveDefaultConfig();
 
