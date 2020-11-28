@@ -1,4 +1,4 @@
-package top.retarders.hardon.command.handler;
+package top.retarders.hardon.command.kit.handler;
 
 import me.lucko.helper.Helper;
 import me.lucko.helper.command.context.CommandContext;
@@ -9,7 +9,7 @@ import top.retarders.hardon.kit.repo.KitRepository;
 
 import java.util.Optional;
 
-public class SetDisplayCommandHandler implements FunctionalCommandHandler<Player> {
+public class SetPriceCommandHandler implements FunctionalCommandHandler<Player> {
 
     private KitRepository repository = Helper.service(KitRepository.class).get();
 
@@ -23,12 +23,13 @@ public class SetDisplayCommandHandler implements FunctionalCommandHandler<Player
             return;
         }
 
+        int price = context.arg(1).parse(Integer.class).get();
+
         Kit kit = hasKit.get();
-        kit.displayItem = context.sender().getItemInHand().getType();
+        kit.price = price;
+        repository.saveKit(kit);
 
-        this.repository.saveKit(kit);
-
-        context.reply("&aKit &f\"" + name + "\" &aupdated");
+        context.reply("&aSet price of kit &f\"" + name + "\" &ato &f$" + price);
     }
 
 }

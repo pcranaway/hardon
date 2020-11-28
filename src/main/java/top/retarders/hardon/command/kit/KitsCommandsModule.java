@@ -1,9 +1,9 @@
-package top.retarders.hardon.command;
+package top.retarders.hardon.command.kit;
 
 import me.lucko.helper.Commands;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;
-import top.retarders.hardon.command.handler.*;
+import top.retarders.hardon.command.kit.handler.*;
 
 public class KitsCommandsModule implements TerminableModule {
     @Override

@@ -1,4 +1,4 @@
-package top.retarders.hardon.command.handler;
+package top.retarders.hardon.command.kit.handler;
 
 import me.lucko.helper.Helper;
 import me.lucko.helper.command.context.CommandContext;

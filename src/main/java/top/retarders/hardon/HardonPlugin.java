@@ -10,7 +10,7 @@ import me.lucko.helper.mongo.plugin.HelperMongo;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
 import org.bukkit.Bukkit;
-import top.retarders.hardon.command.KitsCommandsModule;
+import top.retarders.hardon.command.kit.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.improvements.ImprovementsListener;
 import top.retarders.hardon.event.spawn.SpawnListener;

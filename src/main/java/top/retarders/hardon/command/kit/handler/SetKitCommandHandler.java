@@ -1,16 +1,17 @@
-package top.retarders.hardon.command.handler;
+package top.retarders.hardon.command.kit.handler;
 
 import me.lucko.helper.Helper;
 import me.lucko.helper.command.context.CommandContext;
 import me.lucko.helper.command.functional.FunctionalCommandHandler;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.PlayerInventory;
 import top.retarders.hardon.kit.Kit;
 import top.retarders.hardon.kit.repo.KitRepository;
+import top.retarders.hardon.serialization.ItemSerializer;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-public class SetDescriptionCommandHandler implements FunctionalCommandHandler<Player> {
+public class SetKitCommandHandler implements FunctionalCommandHandler<Player> {
 
     private KitRepository repository = Helper.service(KitRepository.class).get();
 
@@ -24,13 +25,15 @@ public class SetDescriptionCommandHandler implements FunctionalCommandHandler<Pl
             return;
         }
 
-        String description = context.args().subList(1, context.args().size()).stream().collect(Collectors.joining(" "));
+        PlayerInventory inventory = context.sender().getInventory();
 
         Kit kit = hasKit.get();
-        kit.description = description;
-        repository.saveKit(kit);
+        kit.inventory = ItemSerializer.itemStackArrayToBase64(inventory.getContents());
+        kit.armor = ItemSerializer.itemStackArrayToBase64(inventory.getArmorContents());
 
-        context.reply("&aSet description of kit &f\"" + name + "\" &ato &f\"" + description + "\"");
+        this.repository.saveKit(kit);
+
+        context.reply("&aKit &f\"" + name + "\" &aupdated");
     }
 
 }

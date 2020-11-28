@@ -1,17 +1,16 @@
-package top.retarders.hardon.command.handler;
+package top.retarders.hardon.command.kit.handler;
 
 import me.lucko.helper.Helper;
 import me.lucko.helper.command.context.CommandContext;
 import me.lucko.helper.command.functional.FunctionalCommandHandler;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.PlayerInventory;
 import top.retarders.hardon.kit.Kit;
+import top.retarders.hardon.kit.gui.KitDeleteGui;
 import top.retarders.hardon.kit.repo.KitRepository;
-import top.retarders.hardon.serialization.ItemSerializer;
 
 import java.util.Optional;
 
-public class SetKitCommandHandler implements FunctionalCommandHandler<Player> {
+public class DeleteKitCommandHandler implements FunctionalCommandHandler<Player> {
 
     private KitRepository repository = Helper.service(KitRepository.class).get();
 
@@ -25,15 +24,7 @@ public class SetKitCommandHandler implements FunctionalCommandHandler<Player> {
             return;
         }
 
-        PlayerInventory inventory = context.sender().getInventory();
-
-        Kit kit = hasKit.get();
-        kit.inventory = ItemSerializer.itemStackArrayToBase64(inventory.getContents());
-        kit.armor = ItemSerializer.itemStackArrayToBase64(inventory.getArmorContents());
-
-        this.repository.saveKit(kit);
-
-        context.reply("&aKit &f\"" + name + "\" &aupdated");
+        new KitDeleteGui(context.sender(), hasKit.get()).open();
     }
 
 }
