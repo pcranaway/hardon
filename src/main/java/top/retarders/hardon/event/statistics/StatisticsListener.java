@@ -13,8 +13,8 @@ public class StatisticsListener implements TerminableModule {
     @Override
     public void setup(TerminableConsumer consumer) {
         Events.subscribe(PlayerDeathEvent.class)
-                .filter(event -> event.getEntity().getLastDamageCause().getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK))
-                .filter(event -> ((EntityDamageByEntityEvent) event.getEntity().getLastDamageCause()).getDamager() instanceof Player)
+//                .filter(event -> event.getEntity().getLastDamageCause().getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK))
+//                .filter(event -> ((EntityDamageByEntityEvent) event.getEntity().getLastDamageCause()).getDamager() instanceof Player)
                 .handler(new DeathHandler())
                 .bindWith(consumer);
     }
