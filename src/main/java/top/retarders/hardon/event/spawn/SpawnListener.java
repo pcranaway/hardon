@@ -35,7 +35,6 @@ public class SpawnListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(PlayerRespawnEvent.class)
-                .filter(event ->  this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
                 .handler(new RespawnEventHandler())
                 .bindWith(consumer);
 
