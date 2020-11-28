@@ -1,5 +1,6 @@
 package top.retarders.hardon;
 
+import me.lucko.helper.Helper;
 import me.lucko.helper.Schedulers;
 import me.lucko.helper.maven.LibraryLoader;
 import me.lucko.helper.maven.MavenLibrary;
@@ -10,6 +11,7 @@ import me.lucko.helper.mongo.plugin.HelperMongo;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
 import top.retarders.hardon.command.admin.AdminCommandsModule;
 import top.retarders.hardon.command.kit.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
@@ -18,6 +20,7 @@ import top.retarders.hardon.event.spawn.SpawnListener;
 import top.retarders.hardon.event.statistics.StatisticsListener;
 import top.retarders.hardon.event.warzone.WarzoneListener;
 import top.retarders.hardon.kit.repo.KitRepository;
+import top.retarders.hardon.sidebar.SidebarModule;
 import top.retarders.hardon.user.repo.UserRepository;
 
 @Plugin(
@@ -51,8 +54,11 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         this.provideService(MongoDatabaseCredentials.class, this.globalCredentials);
         this.provideService(Mongo.class, this.globalDataSource);
 
+        this.provideService(ConfigurationSection.class, this.getConfig());
+
         this.provideService(UserRepository.class, new UserRepository());
         this.provideService(KitRepository.class, new KitRepository());
+        this.provideService(SidebarModule.class, new SidebarModule());
 
         // load kits
         this.getService(KitRepository.class).loadKits();
@@ -67,6 +73,9 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         // register commands
         this.bindModule(new KitsCommandsModule());
         this.bindModule(new AdminCommandsModule());
+
+        // register other modules
+        this.bindModule(Helper.service(SidebarModule.class).get());
 
         // schedule accounts save task every 15 seconds (not sure if that's a bad idea)
         Schedulers.async().runRepeating(() -> {

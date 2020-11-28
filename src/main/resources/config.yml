@@ -5,11 +5,11 @@ username: 'dev'
 password: 'dev'
 
 sidebar:
-  title: '&a&lHardon'
+  title: '&6&lHardon'
   lines:
-    - '&f&m--------------------------------'
-    - '&a&lKills: ${kills}'
-    - '&a&lDeats: ${deaths}'
-    - '&a&lState: ${state}'
-    - '&a&lKit: ${kit}'
-    - '&f&m--------------------------------'
+    - '&f&m------------------------&r'
+    - '&6&lKills: &f${kills}'
+    - '&6&lDeats: &f${deaths}'
+    - '&6&lState: &f${state}'
+    - '&6&lKit: &f${kit}'
+    - '&f&m------------------------'

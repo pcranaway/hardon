@@ -3,6 +3,7 @@ package top.retarders.hardon.user;
 import me.lucko.helper.Helper;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.external.morphia.Datastore;
+import me.lucko.helper.scoreboard.ScoreboardObjective;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import top.retarders.hardon.account.Account;
@@ -21,10 +22,12 @@ public class User {
     public Kit kit;
     public AtomicInteger killstreak;
     public boolean buildmode;
+    public ScoreboardObjective objective;
 
     public User(UUID uuid) {
         this.uuid = uuid;
 
+        this.objective = null;
         this.buildmode = false;
         this.kit = null;
         this.state = UserState.SPAWN;
