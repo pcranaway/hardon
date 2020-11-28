@@ -47,6 +47,7 @@ public class ImprovementsListener implements TerminableModule {
 
         Events.subscribe(PlayerDeathEvent.class)
                 .handler(event -> {
+                    event.setDeathMessage(null);
                     event.setDroppedExp(0);
                     event.getDrops().clear();
                 })
