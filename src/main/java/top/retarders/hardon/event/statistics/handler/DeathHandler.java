@@ -21,10 +21,18 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
         User killedUser = this.userRepository.find(killed.getUniqueId()).get();
         Account killedAccount = killedUser.account;
 
-        killedAccount.deaths += 0;
+        killedAccount.deaths += 1;
+
+        if(killedUser.killstreak.get() > killedAccount.highestKillstreak) {
+            killedAccount.highestKillstreak = killedUser.killstreak.get();
+        }
+
         killedUser.killstreak.set(0);
 
         Player killer = (Player) ((EntityDamageByEntityEvent) (killed.getLastDamageCause())).getDamager();
+
+        if(killer == null) return;
+
         User killerUser = this.userRepository.find(killer.getUniqueId()).get();
         Account killerAccount = killerUser.account;
 

@@ -29,9 +29,7 @@ public class ImprovementsListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(WeatherChangeEvent.class)
-                .handler(event -> {
-                    event.getWorld().setStorm(true);
-                })
+                .handler(event -> event.getWorld().setStorm(true))
                 .bindWith(consumer);
 
         Events.subscribe(BlockBreakEvent.class)
@@ -45,11 +43,8 @@ public class ImprovementsListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(EntityDamageEvent.class)
-//                .filter(event -> event.getCause() == null || event.getCause() == EntityDamageEvent.DamageCause.FALL)
-                .handler(event -> {
-                    System.out.println("yuh");
-//                    event.setCancelled(true);
-                })
+                .filter(event -> event.getCause() == null || event.getCause() == EntityDamageEvent.DamageCause.FALL)
+                .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
     }
 }
