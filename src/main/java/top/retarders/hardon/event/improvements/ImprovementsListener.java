@@ -4,12 +4,10 @@ import me.lucko.helper.Events;
 import me.lucko.helper.Helper;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import top.retarders.hardon.user.repo.UserRepository;
 
@@ -45,6 +43,13 @@ public class ImprovementsListener implements TerminableModule {
         Events.subscribe(EntityDamageEvent.class)
                 .filter(event -> event.getCause() == null || event.getCause() == EntityDamageEvent.DamageCause.FALL)
                 .handler(event -> event.setCancelled(true))
+                .bindWith(consumer);
+
+        Events.subscribe(PlayerDeathEvent.class)
+                .handler(event -> {
+                    event.setDroppedExp(0);
+                    event.getDrops().clear();
+                })
                 .bindWith(consumer);
     }
 }

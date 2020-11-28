@@ -29,20 +29,23 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
         killedUser.killstreak.set(0);
 
-        if(!(killed.getLastDamageCause() instanceof EntityDamageByEntityEvent)) return;
-        Player killer = (Player) ((EntityDamageByEntityEvent) (killed.getLastDamageCause())).getDamager();
+        if(killed.getLastDamageCause() instanceof EntityDamageByEntityEvent) {
 
-        User killerUser = this.userRepository.find(killer.getUniqueId()).get();
-        Account killerAccount = killerUser.account;
+            Player killer = (Player) ((EntityDamageByEntityEvent) (killed.getLastDamageCause())).getDamager();
 
-        killerAccount.kills += 1;
-        killerUser.killstreak.incrementAndGet();
+            User killerUser = this.userRepository.find(killer.getUniqueId()).get();
+            Account killerAccount = killerUser.account;
 
-        // TODO: Implement neural network to find the amount of coins the killer should get depending on the stats of the killed player
-        int $ = (int) (Math.random() * (250 - 60)) + 60;
-        killerAccount.balance += $;
+            killerAccount.kills += 1;
+            killerUser.killstreak.incrementAndGet();
 
-        killer.sendMessage(Text.colorize("&7You've earned &f$" + $ + "&7 for killing &f" + killed.getName()));
+            // TODO: Implement neural network to find the amount of coins the killer should get depending on the stats of the killed player
+            int $ = (int) (Math.random() * (250 - 60)) + 60;
+            killerAccount.balance += $;
+
+            killer.sendMessage(Text.colorize("&7You've earned &f$" + $ + "&7 for killing &f" + killed.getName()));
+
+        }
+
     }
-
 }

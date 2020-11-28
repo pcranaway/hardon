@@ -21,8 +21,7 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
             event.setDeathMessage(player.getName() + ChatColor.GRAY + " was killed by " + ChatColor.WHITE + killer.getName());
         }
 
-        event.setDroppedExp(0);
-        event.getDrops().clear();
+
     }
 
 }
