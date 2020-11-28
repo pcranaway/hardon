@@ -29,9 +29,8 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
         killedUser.killstreak.set(0);
 
+        if(!(killed.getLastDamageCause() instanceof EntityDamageByEntityEvent)) return;
         Player killer = (Player) ((EntityDamageByEntityEvent) (killed.getLastDamageCause())).getDamager();
-
-        if(killer == null) return;
 
         User killerUser = this.userRepository.find(killer.getUniqueId()).get();
         Account killerAccount = killerUser.account;
