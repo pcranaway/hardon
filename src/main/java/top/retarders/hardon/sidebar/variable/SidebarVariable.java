@@ -19,7 +19,8 @@ public interface SidebarVariable {
                 new KillstreakVariable(),
                 new KillsVariable(),
                 new KitVariable(),
-                new StateVariable()
+                new StateVariable(),
+                new BalanceVariable()
         );
 
     }
