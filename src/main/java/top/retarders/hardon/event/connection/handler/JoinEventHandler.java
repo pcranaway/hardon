@@ -17,6 +17,8 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
 
     @Override
     public void accept(PlayerJoinEvent event) {
+        event.setJoinMessage(null);
+
         Player player = event.getPlayer();
 
         player.teleport(Helper.world("world").get().getSpawnLocation());

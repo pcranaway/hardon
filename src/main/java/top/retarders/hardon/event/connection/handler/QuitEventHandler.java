@@ -15,6 +15,8 @@ public class QuitEventHandler implements Consumer<PlayerQuitEvent> {
 
     @Override
     public void accept(PlayerQuitEvent event) {
+        event.setQuitMessage(null);
+
         User user = this.repository.find(event.getPlayer().getUniqueId()).get();
 
         mongo.getMorphiaDatastore().save(user.account);
