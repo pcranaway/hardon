@@ -22,9 +22,18 @@ public class RespawnEventHandler implements Consumer<PlayerRespawnEvent> {
         user.kit = null;
         user.state = UserState.SPAWN;
 
-        event.setRespawnLocation(player.getWorld().getSpawnLocation());
+        new Thread(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        SpawnItems.ITEMS.forEach(triplet -> event.getPlayer().getInventory().setItem(triplet.second, triplet.first));
+            SpawnItems.ITEMS.forEach(triplet -> event.getPlayer().getInventory().setItem(triplet.second, triplet.first));
+
+        }).start();
+
+        event.setRespawnLocation(player.getWorld().getSpawnLocation());
     }
 
 }
