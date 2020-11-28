@@ -9,6 +9,7 @@ import me.lucko.helper.mongo.MongoProvider;
 import me.lucko.helper.mongo.plugin.HelperMongo;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
+import org.bukkit.Bukkit;
 import top.retarders.hardon.command.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.improvements.ImprovementsListener;
@@ -69,6 +70,11 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         Schedulers.async().runRepeating(() -> {
             this.getService(UserRepository.class).users.forEach(user -> this.globalDataSource.getMorphiaDatastore().save(user.account));
         }, 15 * 20L, 15 * 20L);
+
+        // schedule change time task every minute
+        Schedulers.async().runRepeating(() -> {
+            Bukkit.getWorld("world").setTime(1000);
+        }, 60 * 20L, 60 * 20L);
     }
 
     @Override

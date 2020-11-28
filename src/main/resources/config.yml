@@ -3,3 +3,13 @@ port: 27017
 database: 'hardon'
 username: 'dev'
 password: 'dev'
+
+sidebar:
+  title: '&a&lHardon'
+  lines:
+    - '&f&m--------------------------------'
+    - '&a&lKills: ${kills}'
+    - '&a&lDeats: ${deaths}'
+    - '&a&lState: ${state}'
+    - '&a&lKit: ${kit}'
+    - '&f&m--------------------------------'
