@@ -7,6 +7,7 @@ import me.lucko.helper.terminable.module.TerminableModule;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -29,21 +30,26 @@ public class ImprovementsListener implements TerminableModule {
 
         Events.subscribe(WeatherChangeEvent.class)
                 .handler(event -> {
-                    event.setCancelled(true);
                     event.getWorld().setStorm(true);
                 })
                 .bindWith(consumer);
 
         Events.subscribe(BlockBreakEvent.class)
                 .filter(event -> !this.repository.find(event.getPlayer().getUniqueId()).get().buildmode)
-                .handler(event -> event.setCancelled(true));
+                .handler(event -> event.setCancelled(true))
+                .bindWith(consumer);
 
         Events.subscribe(BlockPlaceEvent.class)
                 .filter(event -> !this.repository.find(event.getPlayer().getUniqueId()).get().buildmode)
-                .handler(event -> event.setCancelled(true));
+                .handler(event -> event.setCancelled(true))
+                .bindWith(consumer);
 
         Events.subscribe(EntityDamageEvent.class)
-                .filter(event -> event.getCause() == EntityDamageEvent.DamageCause.FALL)
-                .handler(event -> event.setCancelled(true));
+//                .filter(event -> event.getCause() == null || event.getCause() == EntityDamageEvent.DamageCause.FALL)
+                .handler(event -> {
+                    System.out.println("yuh");
+//                    event.setCancelled(true);
+                })
+                .bindWith(consumer);
     }
 }
