@@ -22,7 +22,7 @@ public class KitListGui extends Gui {
             .mask("000000000")
             .mask("000000011");
 
-    private KitRepository repository = Helper.service(KitRepository.class).get();
+    private final KitRepository repository = Helper.service(KitRepository.class).get();
 
     private final int page;
 

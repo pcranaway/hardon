@@ -11,7 +11,7 @@ import top.retarders.hardon.user.state.UserState;
 
 public class WarzoneListener implements TerminableModule {
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
 
     @Override
     public void setup(TerminableConsumer consumer) {

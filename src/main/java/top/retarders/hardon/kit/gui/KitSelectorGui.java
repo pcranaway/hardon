@@ -12,8 +12,8 @@ import top.retarders.hardon.user.state.UserState;
 
 public class KitSelectorGui extends Gui {
 
-    private KitRepository kitRepository = Helper.service(KitRepository.class).get();
-    private UserRepository userRepository = Helper.service(UserRepository.class).get();
+    private final KitRepository kitRepository = Helper.service(KitRepository.class).get();
+    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
 
     public KitSelectorGui(Player player) {
         super(player, 3, "Kit Selector");

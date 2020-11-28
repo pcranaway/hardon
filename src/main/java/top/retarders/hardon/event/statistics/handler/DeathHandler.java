@@ -9,12 +9,11 @@ import top.retarders.hardon.account.Account;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
 
-import java.util.Random;
 import java.util.function.Consumer;
 
 public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
-    private UserRepository userRepository = Helper.service(UserRepository.class).get();
+    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
 
     @Override
     public void accept(PlayerDeathEvent event) {

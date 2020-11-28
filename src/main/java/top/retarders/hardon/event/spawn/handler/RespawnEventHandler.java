@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 
 public class RespawnEventHandler implements Consumer<PlayerRespawnEvent> {
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
 
     @Override
     public void accept(PlayerRespawnEvent event) {

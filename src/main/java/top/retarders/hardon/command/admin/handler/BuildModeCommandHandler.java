@@ -9,7 +9,7 @@ import top.retarders.hardon.user.repo.UserRepository;
 
 public class BuildModeCommandHandler implements FunctionalCommandHandler<Player> {
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
 
     @Override
     public void handle(CommandContext<Player> context) {

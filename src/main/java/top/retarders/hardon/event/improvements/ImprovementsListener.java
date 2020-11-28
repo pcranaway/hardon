@@ -4,7 +4,6 @@ import me.lucko.helper.Events;
 import me.lucko.helper.Helper;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -15,7 +14,7 @@ import top.retarders.hardon.user.repo.UserRepository;
 
 public class ImprovementsListener implements TerminableModule {
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
 
     @Override
     public void setup(TerminableConsumer consumer) {

@@ -18,7 +18,7 @@ public class KitDeleteGui extends Gui {
             .mask("000111000")
             .mask("000000000");
 
-    private KitRepository repository = Helper.service(KitRepository.class).get();
+    private final KitRepository repository = Helper.service(KitRepository.class).get();
 
     private final Kit kit;
 

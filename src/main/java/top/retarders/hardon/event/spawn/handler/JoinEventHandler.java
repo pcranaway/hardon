@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
 
     @Override
     public void accept(PlayerJoinEvent event) {

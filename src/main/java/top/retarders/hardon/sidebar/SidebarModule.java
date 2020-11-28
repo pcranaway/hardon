@@ -20,14 +20,14 @@ import java.util.function.BiConsumer;
 
 public class SidebarModule implements TerminableModule {
 
-    private ConfigurationSection section = Helper.service(ConfigurationSection.class).get()
+    private final ConfigurationSection section = Helper.service(ConfigurationSection.class).get()
             .getConfigurationSection("sidebar");
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
 
-    private Scoreboard scoreboard = Services.load(ScoreboardProvider.class).getScoreboard();
+    private final Scoreboard scoreboard = Services.load(ScoreboardProvider.class).getScoreboard();
 
-    private BiConsumer<User, ScoreboardObjective> updater = (user, objective) -> {
+    private final BiConsumer<User, ScoreboardObjective> updater = (user, objective) -> {
         objective.setDisplayName(section.getString("title"));
 
         List<String> lines = section.getStringList("lines");

@@ -11,7 +11,7 @@ import top.retarders.hardon.kit.repo.KitRepository;
 
 public class NewKitCommandHandler implements FunctionalCommandHandler<Player> {
 
-    private KitRepository repository = Helper.service(KitRepository.class).get();
+    private final KitRepository repository = Helper.service(KitRepository.class).get();
 
     @Override
     public void handle(CommandContext<Player> context) {

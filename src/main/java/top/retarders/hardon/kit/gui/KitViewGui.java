@@ -51,9 +51,7 @@ public class KitViewGui extends Gui {
                 .filter(item -> item != null && item.getType() != null)
                 .filter(item -> {
                     if(!primaryWeapon.isPresent()) return true;
-                    if(primaryWeapon.get() == item) return false;
-
-                    return true;
+                    return primaryWeapon.get() != item;
                 })
                 .forEach(item -> this.setItem(slot.getAndIncrement(), ItemStackBuilder.of(item.getType()).build(() -> {})));
 

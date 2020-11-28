@@ -10,8 +10,8 @@ import java.util.function.Consumer;
 
 public class QuitEventHandler implements Consumer<PlayerQuitEvent> {
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
-    private Mongo mongo = Helper.service(Mongo.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
+    private final Mongo mongo = Helper.service(Mongo.class).get();
 
     @Override
     public void accept(PlayerQuitEvent event) {

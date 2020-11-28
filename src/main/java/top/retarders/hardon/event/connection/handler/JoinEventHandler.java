@@ -1,7 +1,6 @@
 package top.retarders.hardon.event.connection.handler;
 
 import me.lucko.helper.Helper;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import top.retarders.hardon.sidebar.SidebarModule;
@@ -12,8 +11,8 @@ import java.util.function.Consumer;
 
 public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
 
-    private UserRepository repository = Helper.service(UserRepository.class).get();
-    private SidebarModule sidebarModule = Helper.service(SidebarModule.class).get();
+    private final UserRepository repository = Helper.service(UserRepository.class).get();
+    private final SidebarModule sidebarModule = Helper.service(SidebarModule.class).get();
 
     @Override
     public void accept(PlayerJoinEvent event) {

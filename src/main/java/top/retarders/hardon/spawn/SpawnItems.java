@@ -1,14 +1,12 @@
 package top.retarders.hardon.spawn;
 
 import me.lucko.helper.item.ItemStackBuilder;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import top.retarders.hardon.kit.gui.KitSelectorGui;
 import top.retarders.hardon.utilities.ImmutableTriplet;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
