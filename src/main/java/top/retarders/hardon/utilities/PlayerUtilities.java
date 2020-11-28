@@ -2,7 +2,6 @@ package top.retarders.hardon.utilities;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class PlayerUtilities {
 
@@ -13,7 +12,7 @@ public class PlayerUtilities {
      */
     public static void clear(Player player) {
         player.getInventory().clear();
-        player.getInventory().setArmorContents(new ItemStack[]{});
+        player.getInventory().setArmorContents(null);
     }
 
     /**
