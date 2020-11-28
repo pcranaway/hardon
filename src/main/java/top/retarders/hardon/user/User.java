@@ -20,12 +20,12 @@ public class User {
     public UserState state;
     public Kit kit;
     public AtomicInteger killstreak;
-    public boolean builmode;
+    public boolean buildmode;
 
     public User(UUID uuid) {
         this.uuid = uuid;
 
-        this.builmode = false;
+        this.buildmode = false;
         this.kit = null;
         this.state = UserState.SPAWN;
         this.killstreak = new AtomicInteger(0);

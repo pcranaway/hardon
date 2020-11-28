@@ -34,11 +34,11 @@ public class ImprovementsListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(BlockBreakEvent.class)
-                .filter(event -> !this.repository.find(event.getPlayer().getUniqueId()).get().builmode)
+                .filter(event -> !this.repository.find(event.getPlayer().getUniqueId()).get().buildmode)
                 .handler(event -> event.setCancelled(true));
 
         Events.subscribe(BlockPlaceEvent.class)
-                .filter(event -> !this.repository.find(event.getPlayer().getUniqueId()).get().builmode)
+                .filter(event -> !this.repository.find(event.getPlayer().getUniqueId()).get().buildmode)
                 .handler(event -> event.setCancelled(true));
     }
 }

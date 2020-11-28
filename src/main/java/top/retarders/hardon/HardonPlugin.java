@@ -10,6 +10,7 @@ import me.lucko.helper.mongo.plugin.HelperMongo;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
 import org.bukkit.Bukkit;
+import top.retarders.hardon.command.admin.AdminCommandsModule;
 import top.retarders.hardon.command.kit.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.improvements.ImprovementsListener;
@@ -65,6 +66,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
 
         // register commands
         this.bindModule(new KitsCommandsModule());
+        this.bindModule(new AdminCommandsModule());
 
         // schedule accounts save task every 15 seconds (not sure if that's a bad idea)
         Schedulers.async().runRepeating(() -> {
