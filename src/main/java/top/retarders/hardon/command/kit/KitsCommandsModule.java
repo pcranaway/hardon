@@ -11,7 +11,7 @@ public class KitsCommandsModule implements TerminableModule {
         Commands.create()
                 .assertPlayer()
                 .assertOp()
-                .description("Opes kit management GUI")
+                .description("Opens kit management GUI")
                 .handler(new KitCommandHandler())
                 .registerAndBind(consumer, "kit", "kits");
 
