@@ -20,7 +20,6 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
         Player player = event.getPlayer();
 
         player.teleport(Helper.world("world").get().getSpawnLocation());
-        player.sendMessage(ChatColor.GREEN + "Welcome to Hardon");
 
         User user = new User(player.getUniqueId());
         this.repository.put(user);
