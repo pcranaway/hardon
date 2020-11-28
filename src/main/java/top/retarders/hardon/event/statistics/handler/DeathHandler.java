@@ -1,6 +1,7 @@
 package top.retarders.hardon.event.statistics.handler;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.text3.Text;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -8,6 +9,7 @@ import top.retarders.hardon.account.Account;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
 
+import java.util.Random;
 import java.util.function.Consumer;
 
 public class DeathHandler implements Consumer<PlayerDeathEvent> {
@@ -29,6 +31,12 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
         killerAccount.kills += 1;
         killerUser.killstreak.incrementAndGet();
+
+        // TODO: Implement neural network to find the amount of coins the killer should get depending on the stats of the killed player
+        int $ = (int) (Math.random() * (250 - 60)) + 60;
+        killerAccount.balance += $;
+
+        killer.sendMessage(Text.colorize("&7You've earned &f$" + $ + "&7 for killing &f" + killed.getName()));
     }
 
 }
