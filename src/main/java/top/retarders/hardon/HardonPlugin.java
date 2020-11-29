@@ -13,6 +13,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import top.retarders.hardon.command.admin.AdminCommandsModule;
 import top.retarders.hardon.command.kit.KitsCommandsModule;
+import top.retarders.hardon.event.admin.AdminListener;
 import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.improvements.ImprovementsListener;
 import top.retarders.hardon.event.spawn.SpawnListener;
@@ -68,6 +69,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         this.bindModule(new SpawnListener());
         this.bindModule(new ImprovementsListener());
         this.bindModule(new WarzoneListener());
+        this.bindModule(new AdminListener());
 
         // register commands
         this.bindModule(new KitsCommandsModule());

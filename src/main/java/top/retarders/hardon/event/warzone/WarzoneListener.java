@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.util.Vector;
 import top.retarders.hardon.event.warzone.handler.DeathHandler;
+import top.retarders.hardon.event.warzone.handler.RefillSignHandler;
 import top.retarders.hardon.event.warzone.handler.SoupHandler;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
@@ -43,6 +44,11 @@ public class WarzoneListener implements TerminableModule {
                 .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
                 .filter(event -> event.getItemDrop().getItemStack().getType() == Material.BOWL)
                 .handler(event -> event.getItemDrop().setVelocity(event.getPlayer().getEyeLocation().getDirection().multiply(3)));
+
+        Events.subscribe(PlayerInteractEvent.class)
+                .filter(event -> event.getAction() == Action.RIGHT_CLICK_BLOCK)
+                .filter(event -> event.getClickedBlock().getType() == Material.SIGN || event.getClickedBlock().getType() == Material.WALL_SIGN || event.getClickedBlock().getType() == Material.SIGN_POST)
+                .handler(new RefillSignHandler());
 
     }
 }
