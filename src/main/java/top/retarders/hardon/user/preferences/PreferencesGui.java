@@ -49,18 +49,6 @@ public class PreferencesGui extends Gui {
                     this.redraw();
                 })
         );
-        populator.accept(ItemStackBuilder.of(Material.PAPER)
-                .name("&bGlobal Chat")
-                .lore("&7Click to " + (globalChat ? "&cdisable" : "&aenable") + " &fGlobal Chat")
-                .build(() -> {
-                    String newStatus = globalChat ? "&cdisabled" : "&aenabled";
-
-                    this.user.account.globalChat = !globalChat;
-                    this.getPlayer().sendMessage(Text.colorize("&7You have " + newStatus + " &fGlobal Chat"));
-
-                    this.redraw();
-                })
-        );
 
         populator.accept(ItemStackBuilder.of(Material.ITEM_FRAME)
                 .name("&bSidebar")
