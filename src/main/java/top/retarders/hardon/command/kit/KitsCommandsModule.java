@@ -10,6 +10,13 @@ public class KitsCommandsModule implements TerminableModule {
     public void setup(TerminableConsumer consumer) {
         Commands.create()
                 .assertPlayer()
+                .assertUsage("<name>")
+                .description("Equips a kit")
+                .handler(new EquipKitCommandHandler())
+                .registerAndBind(consumer, "equipkit", "applykit");
+
+        Commands.create()
+                .assertPlayer()
                 .assertOp()
                 .description("Opens kit management GUI")
                 .handler(new KitCommandHandler())
