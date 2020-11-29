@@ -13,6 +13,8 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
     public void accept(PlayerDeathEvent event) {
         Player player = event.getEntity();
 
+        player.spigot().respawn();
+
         if (!(player.getLastDamageCause() instanceof EntityDamageByEntityEvent)) {
             event.setDeathMessage(player.getName() + ChatColor.GRAY + " died");
         } else {
