@@ -74,6 +74,11 @@ public class User {
                 Helper.service(EntityHider.class).get().hideEntity(this.toPlayer(), user.toPlayer());
                 System.out.println("hid " + user.toPlayer().getName() + " from " + this.toPlayer().getName());
             });
+
+            Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.WARZONE).forEach(user -> {
+                Helper.service(EntityHider.class).get().showEntity(this.toPlayer(), user.toPlayer());
+                System.out.println("showing " + user.toPlayer().getName() + " to " + this.toPlayer().getName());
+            });
         }
 
         if(this.state == UserState.SPAWN) {
