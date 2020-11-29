@@ -55,7 +55,7 @@ public class SidebarModule implements TerminableModule {
     public void setup(TerminableConsumer consumer) {
         Schedulers.async().runRepeating(() -> {
             this.repository.users.stream().forEach(this::update);
-        }, 10L, 10L).bindWith(consumer);
+        }, 20L, 20L).bindWith(consumer);
     }
 
     public void apply(User user) {
