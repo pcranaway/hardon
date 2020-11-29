@@ -50,6 +50,9 @@ public class User {
         }
 
         account = new Account(this.uuid);
+        account.sidebar = true;
+        account.deathMessages = true;
+        account.globalChat = true;
         datastore.save(account);
 
         return account;
