@@ -47,7 +47,7 @@ public class ImprovementsListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(PlayerItemDamageEvent.class)
-                .handler(event -> event.setCancelled(true))
+                .handler(event -> event.setDamage(0))
                 .bindWith(consumer);
 
         Events.subscribe(PlayerDeathEvent.class)
