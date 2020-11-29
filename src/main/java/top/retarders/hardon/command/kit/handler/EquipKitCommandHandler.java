@@ -8,6 +8,7 @@ import top.retarders.hardon.kit.Kit;
 import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
+import top.retarders.hardon.user.state.UserState;
 
 import java.util.Optional;
 
@@ -35,6 +36,7 @@ public class EquipKitCommandHandler implements FunctionalCommandHandler<Player> 
 
         Kit kit = hasKit.get();
 
+        user.state = UserState.WARZONE;
         user.kit = kit;
         kit.equip(context.sender());
     }
