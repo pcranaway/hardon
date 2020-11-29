@@ -31,6 +31,7 @@ public class WarzoneListener implements TerminableModule {
                 .filter(event -> event.getItem() != null)
                 .filter(event -> event.getItem().getType() == Material.MUSHROOM_SOUP)
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
+                .filter(event -> event.getPlayer().getHealth() != event.getPlayer().getMaxHealth())
                 .handler(new SoupHandler());
 
         Events.subscribe(PlayerPickupItemEvent.class)
