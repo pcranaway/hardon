@@ -8,7 +8,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import top.retarders.hardon.account.Account;
 import top.retarders.hardon.kit.Kit;
+import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
+import top.retarders.hardon.utilities.EntityHider;
 
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,7 +32,7 @@ public class User {
         this.objective = null;
         this.buildmode = false;
         this.kit = null;
-        this.state = UserState.SPAWN;
+        this.state(UserState.SPAWN);
         this.killstreak = new AtomicInteger(0);
 
         this.loadAccount();
@@ -64,6 +66,18 @@ public class User {
 
     public User state(UserState state) {
         this.state = state;
+
+        if(this.state == UserState.WARZONE) {
+            Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.SPAWN).forEach(user -> {
+                Helper.service(EntityHider.class).get().hideEntity(this.toPlayer(), user.toPlayer());
+            });
+        }
+
+        if(this.state == UserState.SPAWN) {
+            Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.WARZONE).forEach(user -> {
+                Helper.service(EntityHider.class).get().hideEntity(user.toPlayer(), this.toPlayer());
+            });
+        }
 
         return this;
     }

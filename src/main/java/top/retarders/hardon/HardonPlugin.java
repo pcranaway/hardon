@@ -22,6 +22,7 @@ import top.retarders.hardon.event.warzone.WarzoneListener;
 import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.sidebar.SidebarModule;
 import top.retarders.hardon.user.repo.UserRepository;
+import top.retarders.hardon.utilities.EntityHider;
 
 @Plugin(
         name = "hardon",
@@ -59,6 +60,8 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         this.provideService(UserRepository.class, new UserRepository());
         this.provideService(KitRepository.class, new KitRepository());
         this.provideService(SidebarModule.class, new SidebarModule());
+
+        this.provideService(EntityHider.class, new EntityHider(this, EntityHider.Policy.WHITELIST));
 
         // load kits
         this.getService(KitRepository.class).loadKits();
