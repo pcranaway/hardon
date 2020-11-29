@@ -12,8 +12,10 @@ import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
 import top.retarders.hardon.utilities.EntityHider;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 public class User {
 
@@ -67,28 +69,26 @@ public class User {
     public User state(UserState state) {
         this.state = state;
 
-        System.out.println(this.state.name());
-
-        if(this.state == UserState.WARZONE) {
-            Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.SPAWN).forEach(user -> {
-                Helper.service(EntityHider.class).get().hideEntity(this.toPlayer(), user.toPlayer());
-                System.out.println("hid " + user.toPlayer().getName() + " from " + this.toPlayer().getName());
-            });
-
-            Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.WARZONE).forEach(user -> {
-                Helper.service(EntityHider.class).get().showEntity(this.toPlayer(), user.toPlayer());
-                System.out.println("showing " + user.toPlayer().getName() + " to " + this.toPlayer().getName());
-            });
-        }
-
-        if(this.state == UserState.SPAWN) {
-            Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.WARZONE).forEach(user -> {
-                Helper.service(EntityHider.class).get().hideEntity(user.toPlayer(), this.toPlayer());
-                System.out.println("hid " + this.toPlayer().getName() + " from " + user.toPlayer().getName());
-            });
-        }
+        this.updateHidden();
 
         return this;
+    }
+
+    public void updateHidden() {
+        List<User> users = Helper.service(UserRepository.class).get().users;
+        EntityHider entityHider = Helper.service(EntityHider.class).get();
+
+        // if player just got in warzone
+        if(this.state == UserState.WARZONE) {
+
+            // find all players that are in spawn
+            users.stream().filter(user -> user.state == UserState.SPAWN).forEach(user -> {
+
+                // hide the current player from the user
+                entityHider.hideEntity(this.toPlayer(), user.toPlayer());
+
+            });
+        }
     }
 
 }

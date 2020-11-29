@@ -21,6 +21,7 @@ import top.retarders.hardon.event.statistics.StatisticsListener;
 import top.retarders.hardon.event.warzone.WarzoneListener;
 import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.sidebar.SidebarModule;
+import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.utilities.EntityHider;
 
@@ -62,7 +63,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         this.provideService(KitRepository.class, new KitRepository());
         this.provideService(SidebarModule.class, new SidebarModule());
 
-        this.provideService(EntityHider.class, new EntityHider(this, EntityHider.Policy.WHITELIST));
+        this.provideService(EntityHider.class, new EntityHider(this, EntityHider.Policy.BLACKLIST));
 
         // load kits
         this.getService(KitRepository.class).loadKits();
@@ -98,6 +99,11 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
                 item.remove();
             });
         }, 15 * 20L, 15 * 20L);
+
+        // (bad idea) update hidden players for each user every second
+        Schedulers.async().runRepeating(() -> {
+            this.getService(UserRepository.class).users.forEach(User::updateHidden);
+        }, 20L, 20L);
     }
 
     @Override
