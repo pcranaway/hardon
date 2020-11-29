@@ -7,8 +7,12 @@ import me.lucko.helper.terminable.module.TerminableModule;
 import org.bukkit.Material;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.util.Vector;
 import top.retarders.hardon.event.warzone.handler.DeathHandler;
+import top.retarders.hardon.event.warzone.handler.SoupHandler;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
 
@@ -27,6 +31,17 @@ public class WarzoneListener implements TerminableModule {
                 .filter(event -> event.getItem() != null)
                 .filter(event -> event.getItem().getType() == Material.MUSHROOM_SOUP)
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
-                .handler(event -> event.getPlayer().setHealth(event.getPlayer().getMaxHealth() + 3.5));
+                .handler(new SoupHandler());
+
+        Events.subscribe(PlayerPickupItemEvent.class)
+                .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
+                .filter(event -> event.getItem().getItemStack().getType() == Material.MUSHROOM_SOUP)
+                .handler(event -> event.setCancelled(true));
+
+        Events.subscribe(PlayerDropItemEvent.class)
+                .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
+                .filter(event -> event.getItemDrop().getItemStack().getType() == Material.MUSHROOM_SOUP)
+                .handler(event -> event.getItemDrop().setVelocity(event.getPlayer().getEyeLocation().getDirection().multiply(3)));
+
     }
 }
