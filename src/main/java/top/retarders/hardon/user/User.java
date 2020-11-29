@@ -81,6 +81,10 @@ public class User {
         // if player just got in warzone
         if(this.state == UserState.WARZONE) {
 
+            users.forEach(user -> {
+                entityHider.showEntity(this.toPlayer(), user.toPlayer());
+            });
+
             // find all players that are in spawn
             users.stream().filter(user -> user.state == UserState.SPAWN).forEach(user -> {
 
