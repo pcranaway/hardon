@@ -99,11 +99,6 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
                 item.remove();
             });
         }, 15 * 20L, 15 * 20L);
-
-        // (bad idea) update hidden players for each user every second
-        Schedulers.async().runRepeating(() -> {
-            this.getService(UserRepository.class).users.forEach(User::updateHidden);
-        }, 20L, 20L);
     }
 
     @Override

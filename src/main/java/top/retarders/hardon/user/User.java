@@ -69,30 +69,7 @@ public class User {
     public User state(UserState state) {
         this.state = state;
 
-        this.updateHidden();
-
         return this;
-    }
-
-    public void updateHidden() {
-        List<User> users = Helper.service(UserRepository.class).get().users;
-        EntityHider entityHider = Helper.service(EntityHider.class).get();
-
-        // if player just got in warzone
-        if(this.state == UserState.WARZONE) {
-
-            users.forEach(user -> {
-                entityHider.showEntity(this.toPlayer(), user.toPlayer());
-            });
-
-            // find all players that are in spawn
-            users.stream().filter(user -> user.state == UserState.SPAWN).forEach(user -> {
-
-                // hide the current player from the user
-                entityHider.hideEntity(this.toPlayer(), user.toPlayer());
-
-            });
-        }
     }
 
 }
