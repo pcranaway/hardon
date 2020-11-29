@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 public class SoupHandler implements Consumer<PlayerInteractEvent> {
     @Override
     public void accept(PlayerInteractEvent event) {
-        double newHealth = event.getPlayer().getHealth() + 3.5;
+        double newHealth = event.getPlayer().getHealth() + 4.5;
         if(newHealth > 20.0) newHealth = 20.0;
 
         event.getPlayer().setHealth(newHealth);
