@@ -38,13 +38,51 @@ public class PreferencesGui extends Gui {
         boolean deathMessages = this.user.account.deathMessages;
 
         populator.accept(ItemStackBuilder.of(Material.PAPER)
-                .name((globalChat ? "&a" : "&c") + "&lGlobal Chat")
-                .lore("&7Click to " + (globalChat ? "disable" : "enable") + " &fGlobal Chat")
+                .name("&bGlobal Chat")
+                .lore("&7Click to " + (globalChat ? "&cdisable" : "&aenable") + " &fGlobal Chat")
                 .build(() -> {
                     String newStatus = globalChat ? "&cdisabled" : "&aenabled";
 
                     this.user.account.globalChat = !globalChat;
                     this.getPlayer().sendMessage(Text.colorize("&7You have " + newStatus + " &fGlobal Chat"));
+
+                    this.redraw();
+                })
+        );
+        populator.accept(ItemStackBuilder.of(Material.PAPER)
+                .name("&bGlobal Chat")
+                .lore("&7Click to " + (globalChat ? "&cdisable" : "&aenable") + " &fGlobal Chat")
+                .build(() -> {
+                    String newStatus = globalChat ? "&cdisabled" : "&aenabled";
+
+                    this.user.account.globalChat = !globalChat;
+                    this.getPlayer().sendMessage(Text.colorize("&7You have " + newStatus + " &fGlobal Chat"));
+
+                    this.redraw();
+                })
+        );
+
+        populator.accept(ItemStackBuilder.of(Material.ITEM_FRAME)
+                .name("&bSidebar")
+                .lore("&7Click to " + (sidebar ? "&cdisable" : "&aenable") + " &fSidebar")
+                .build(() -> {
+                    String newStatus = sidebar ? "&cdisabled" : "&aenabled";
+
+                    this.user.account.sidebar = !sidebar;
+                    this.getPlayer().sendMessage(Text.colorize("&7You have " + newStatus + " &fSidebar"));
+
+                    this.redraw();
+                })
+        );
+
+        populator.accept(ItemStackBuilder.of(Material.NETHER_STAR)
+                .name("&bDeath Messages")
+                .lore("&7Click to " + (deathMessages ? "&cdisable" : "&aenable") + " &fDeath Messages")
+                .build(() -> {
+                    String newStatus = deathMessages ? "&cdisabled" : "&aenabled";
+
+                    this.user.account.deathMessages = !deathMessages;
+                    this.getPlayer().sendMessage(Text.colorize("&7You have " + newStatus + " &fDeath Messages"));
 
                     this.redraw();
                 })
