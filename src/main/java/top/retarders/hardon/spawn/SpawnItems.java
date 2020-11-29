@@ -36,6 +36,7 @@ public class SpawnItems {
      * A map of all spawn items and the slots they should be placed at
      */
     public static final List<ImmutableTriplet<ItemStack, Integer, Consumer<Player>>> ITEMS = Arrays.asList(
+            new ImmutableTriplet<>(PREFERENCES_ITEM, 2, PREFERENCES_ACTION),
             new ImmutableTriplet<>(KIT_SELECTOR_ITEM, 4, KIT_SELECTOR_ACTION)
     );
 
