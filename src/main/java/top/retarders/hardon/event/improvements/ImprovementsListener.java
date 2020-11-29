@@ -30,7 +30,7 @@ public class ImprovementsListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(WeatherChangeEvent.class)
-                .handler(event -> event.getWorld().setStorm(true))
+                .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
 
         Events.subscribe(BlockBreakEvent.class)
