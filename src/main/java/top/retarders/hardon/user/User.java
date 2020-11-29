@@ -70,12 +70,14 @@ public class User {
         if(this.state == UserState.WARZONE) {
             Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.SPAWN).forEach(user -> {
                 Helper.service(EntityHider.class).get().hideEntity(this.toPlayer(), user.toPlayer());
+                System.out.println("hid " + user.toPlayer().getName() + " from " + this.toPlayer().getName());
             });
         }
 
         if(this.state == UserState.SPAWN) {
             Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.WARZONE).forEach(user -> {
                 Helper.service(EntityHider.class).get().hideEntity(user.toPlayer(), this.toPlayer());
+                System.out.println("hid " + this.toPlayer().getName() + " from " + user.toPlayer().getName());
             });
         }
 
