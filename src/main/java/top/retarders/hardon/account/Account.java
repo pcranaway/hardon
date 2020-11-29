@@ -16,6 +16,10 @@ public class Account {
     public int highestKillstreak;
     public int balance;
 
+    public boolean globalChat;
+    public boolean sidebar;
+    public boolean deathMessages;
+
     public Account() {}
 
     public Account(UUID uuid) {
@@ -30,6 +34,9 @@ public class Account {
                 ", kills=" + kills +
                 ", highestKillstreak=" + highestKillstreak +
                 ", balance=" + balance +
+                ", globalChat=" + globalChat +
+                ", sidebar=" + sidebar +
+                ", deathMessages=" + deathMessages +
                 '}';
     }
 }

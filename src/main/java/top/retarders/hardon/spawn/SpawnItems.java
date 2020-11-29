@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import top.retarders.hardon.kit.gui.KitSelectorGui;
+import top.retarders.hardon.user.preferences.PreferencesGui;
 import top.retarders.hardon.utilities.ImmutableTriplet;
 
 import java.util.Arrays;
@@ -20,6 +21,15 @@ public class SpawnItems {
 
     public static final Consumer<Player> KIT_SELECTOR_ACTION = player -> {
         new KitSelectorGui(player).open();
+    };
+
+    public static final ItemStack PREFERENCES_ITEM = ItemStackBuilder.of(Material.ANVIL)
+            .name("&7Preferences")
+            .lore("&7Right click to open the Preferences Menu")
+            .build();
+
+    public static final Consumer<Player> PREFERENCES_ACTION = player -> {
+        new PreferencesGui(player).open();
     };
 
     /**
