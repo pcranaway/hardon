@@ -14,14 +14,14 @@ import java.util.Optional;
 
 public class EquipKitCommandHandler implements FunctionalCommandHandler<Player> {
 
-    private KitRepository kitRepository = Helper.service(KitRepository.class).get();
-    private UserRepository userRepository = Helper.service(UserRepository.class).get();
+    private final KitRepository kitRepository = Helper.service(KitRepository.class).get();
+    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
 
     @Override
     public void handle(CommandContext<Player> context) {
         User user = this.userRepository.find(context.sender().getUniqueId()).get();
 
-        if(user.kit != null) {
+        if (user.kit != null) {
             context.reply("&cYou already have a kit");
             return;
         }
@@ -29,7 +29,7 @@ public class EquipKitCommandHandler implements FunctionalCommandHandler<Player> 
         String name = context.arg(0).parse(String.class).get();
         Optional<Kit> hasKit = this.kitRepository.find(name);
 
-        if(!hasKit.isPresent()) {
+        if (!hasKit.isPresent()) {
             context.reply("&cKit &f\"" + name + "\" &cdoesn't exist");
             return;
         }

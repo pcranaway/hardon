@@ -43,7 +43,8 @@ public class Kit {
     public String inventory = "";
     public String armor = "";
 
-    public Kit() {}
+    public Kit() {
+    }
 
     public ItemStack[] getInventory() {
         try {

@@ -43,7 +43,8 @@ public class KitDeleteGui extends Gui {
         populator.accept(ItemStackBuilder.of(Material.PAPER)
                 .name("&c&lDeleting " + kit.color + kit.name)
                 .lore("&7You are about to &cdelete &7" + kit.color + kit.name)
-                .build(() -> {}));
+                .build(() -> {
+                }));
 
         populator.accept(ItemStackBuilder.of(Material.WOOL)
                 .data(14)

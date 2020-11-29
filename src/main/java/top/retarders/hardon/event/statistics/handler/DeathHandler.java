@@ -23,13 +23,13 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
         killedAccount.deaths += 1;
 
-        if(killedUser.killstreak.get() > killedAccount.highestKillstreak) {
+        if (killedUser.killstreak.get() > killedAccount.highestKillstreak) {
             killedAccount.highestKillstreak = killedUser.killstreak.get();
         }
 
         killedUser.killstreak.set(0);
 
-        if(killed.getLastDamageCause() instanceof EntityDamageByEntityEvent) {
+        if (killed.getLastDamageCause() instanceof EntityDamageByEntityEvent) {
 
             Player killer = (Player) ((EntityDamageByEntityEvent) (killed.getLastDamageCause())).getDamager();
 

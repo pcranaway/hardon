@@ -13,7 +13,7 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
     public void accept(PlayerDeathEvent event) {
         Player player = event.getEntity();
 
-        if(!(player.getLastDamageCause() instanceof EntityDamageByEntityEvent)) {
+        if (!(player.getLastDamageCause() instanceof EntityDamageByEntityEvent)) {
             event.setDeathMessage(player.getName() + ChatColor.GRAY + " died");
         } else {
             Player killer = (Player) ((EntityDamageByEntityEvent) (player.getLastDamageCause())).getDamager();

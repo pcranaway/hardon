@@ -38,7 +38,7 @@ public class KitListGui extends Gui {
 
     @Override
     public void redraw() {
-        if(!this.isFirstDraw()) return;
+        if (!this.isFirstDraw()) return;
 
         MenuPopulator populator = BUTTONS.newPopulator(this);
 
@@ -65,7 +65,7 @@ public class KitListGui extends Gui {
                 .data(14)
                 .lore("&7Click to go to the previous page")
                 .build(() -> {
-                    if(!this.hasPreviousPage()) return;
+                    if (!this.hasPreviousPage()) return;
 
                     this.close();
                     new KitListGui(this.getPlayer(), this.page - 1).open();
@@ -75,31 +75,31 @@ public class KitListGui extends Gui {
 
         this.repository.kits.forEach(kit -> {
             this.setItem(slot.getAndIncrement(), ItemStackBuilder.of(kit.displayItem)
-                    .name(kit.color + ChatColor.BOLD.toString() + kit.name)
-                    .lore(ChatColor.GRAY + kit.description)
-                    .lore("&7Price &f- " + kit.color + "$" + kit.price)
-                    .lore("")
-                    .lore("&fClick &7to &fview &7(Unavailable)")
-                    .lore("&fRight click &7to &fequip")
-                    .lore("&fShift + Click &7to &fdelete")
-                    .buildFromMap(new HashMap<ClickType, Runnable>(){{
-                        put(ClickType.LEFT, () -> {
+                            .name(kit.color + ChatColor.BOLD.toString() + kit.name)
+                            .lore(ChatColor.GRAY + kit.description)
+                            .lore("&7Price &f- " + kit.color + "$" + kit.price)
+                            .lore("")
+                            .lore("&fClick &7to &fview &7(Unavailable)")
+                            .lore("&fRight click &7to &fequip")
+                            .lore("&fShift + Click &7to &fdelete")
+                            .buildFromMap(new HashMap<ClickType, Runnable>() {{
+                                put(ClickType.LEFT, () -> {
 //                            close();
 //                            new KitViewGui(getPlayer(), kit).open();
-                            getPlayer().sendMessage(ChatColor.GRAY + "This feature is unavailable");
-                        });
+                                    getPlayer().sendMessage(ChatColor.GRAY + "This feature is unavailable");
+                                });
 
-                        put(ClickType.RIGHT, () -> {
-                            close();
-                            kit.equip(getPlayer());
-                            getPlayer().sendMessage(ChatColor.GRAY + "Equipping " + kit.color + kit.name);
-                        });
+                                put(ClickType.RIGHT, () -> {
+                                    close();
+                                    kit.equip(getPlayer());
+                                    getPlayer().sendMessage(ChatColor.GRAY + "Equipping " + kit.color + kit.name);
+                                });
 
-                        put(ClickType.SHIFT_LEFT, () -> {
-                            close();
-                            new KitDeleteGui(getPlayer(), kit).open();
-                        });
-                    }})
+                                put(ClickType.SHIFT_LEFT, () -> {
+                                    close();
+                                    new KitDeleteGui(getPlayer(), kit).open();
+                                });
+                            }})
             );
         });
     }

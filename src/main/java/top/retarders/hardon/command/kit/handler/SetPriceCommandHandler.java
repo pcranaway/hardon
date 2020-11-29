@@ -18,7 +18,7 @@ public class SetPriceCommandHandler implements FunctionalCommandHandler<Player> 
         String name = context.arg(0).parse(String.class).get();
         Optional<Kit> hasKit = this.repository.find(name);
 
-        if(!hasKit.isPresent()) {
+        if (!hasKit.isPresent()) {
             context.reply("&cKit &f\"" + name + "\" &cdoesn't exist");
             return;
         }

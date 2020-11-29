@@ -38,7 +38,7 @@ public class SidebarModule implements TerminableModule {
             for (SidebarVariable variable : SidebarVariable.SidebarVariables.SIDEBAR_VARIABLES) {
                 String placeholder = "${" + variable.getName() + "}";
 
-                if(line.contains(placeholder)) {
+                if (line.contains(placeholder)) {
                     newLines.add(line.replace(placeholder, variable.getValue(user)));
                     return;
                 }
@@ -66,8 +66,8 @@ public class SidebarModule implements TerminableModule {
     }
 
     public void update(User user) {
-        if(!user.account.sidebar) {
-            if(user.objective == null) return;
+        if (!user.account.sidebar) {
+            if (user.objective == null) return;
 
             user.objective.clearScores();
             user.objective = null;
@@ -75,7 +75,7 @@ public class SidebarModule implements TerminableModule {
             return;
         }
 
-        if(user.objective == null) {
+        if (user.objective == null) {
             this.apply(user);
             return;
         }

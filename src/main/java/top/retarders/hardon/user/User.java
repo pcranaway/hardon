@@ -44,7 +44,7 @@ public class User {
                 .filter("uuid", this.uuid)
                 .get();
 
-        if(account != null) {
+        if (account != null) {
             this.account = account;
             return account;
         }

@@ -21,7 +21,7 @@ public class KitSelectorGui extends Gui {
 
     @Override
     public void redraw() {
-        if(!isFirstDraw()) return;
+        if (!isFirstDraw()) return;
 
         this.kitRepository.kits.forEach(kit -> this.addItem(ItemStackBuilder.of(kit.displayItem)
                 .name(kit.color + kit.name)

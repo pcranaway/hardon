@@ -17,7 +17,7 @@ public class NewKitCommandHandler implements FunctionalCommandHandler<Player> {
     public void handle(CommandContext<Player> context) {
         String name = context.arg(0).parse(String.class).get();
 
-        if(this.repository.find(name).isPresent()) {
+        if (this.repository.find(name).isPresent()) {
             context.reply("&cKit &f\"" + name + "\" &calready exists");
             return;
         }

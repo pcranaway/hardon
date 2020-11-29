@@ -6,7 +6,6 @@ import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.scheme.MenuPopulator;
 import me.lucko.helper.menu.scheme.MenuScheme;
 import me.lucko.helper.text3.Text;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import top.retarders.hardon.user.User;
@@ -18,10 +17,8 @@ public class PreferencesGui extends Gui {
             .mask("000000000")
             .mask("001010100")
             .mask("000000000");
-
-    private UserRepository userRepository = Helper.service(UserRepository.class).get();
-
     private final User user;
+    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
 
     public PreferencesGui(Player player) {
         super(player, 3, "Preferences");

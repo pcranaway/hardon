@@ -20,7 +20,8 @@ public class Account {
     public boolean sidebar;
     public boolean deathMessages;
 
-    public Account() {}
+    public Account() {
+    }
 
     public Account(UUID uuid) {
         this.uuid = uuid;

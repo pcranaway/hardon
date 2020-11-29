@@ -34,8 +34,9 @@ public class KitViewGui extends Gui {
 
         Optional<ItemStack> primaryWeapon = this.kit.getPrimaryWeapon();
 
-        if(primaryWeapon.isPresent()) {
-            populator.accept(ItemStackBuilder.of(primaryWeapon.get()).build(() -> {}));
+        if (primaryWeapon.isPresent()) {
+            populator.accept(ItemStackBuilder.of(primaryWeapon.get()).build(() -> {
+            }));
         }
 
         populator.accept(ItemStackBuilder.of(Material.PAPER)
@@ -43,17 +44,19 @@ public class KitViewGui extends Gui {
                 .lore(ChatColor.GRAY + this.kit.description)
                 .lore("")
                 .lore("&7Price &f- " + this.kit.color + "$" + this.kit.price)
-                .build(() -> {}));
+                .build(() -> {
+                }));
 
         AtomicInteger slot = new AtomicInteger(9);
 
         Stream.of(this.kit.getInventory())
                 .filter(item -> item != null && item.getType() != null)
                 .filter(item -> {
-                    if(!primaryWeapon.isPresent()) return true;
+                    if (!primaryWeapon.isPresent()) return true;
                     return primaryWeapon.get() != item;
                 })
-                .forEach(item -> this.setItem(slot.getAndIncrement(), ItemStackBuilder.of(item.getType()).build(() -> {})));
+                .forEach(item -> this.setItem(slot.getAndIncrement(), ItemStackBuilder.of(item.getType()).build(() -> {
+                })));
 
         populator.accept(ItemStackBuilder.of(Material.SADDLE)
                 .name("&6&lEquip")

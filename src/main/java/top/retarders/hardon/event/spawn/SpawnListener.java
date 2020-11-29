@@ -30,7 +30,7 @@ public class SpawnListener implements TerminableModule {
                 .filter(event -> event.hasItem())
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
                 .filter(event -> SpawnItems.isSpawnItem(event.getItem()))
-                .filter(event ->  this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
+                .filter(event -> this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
                 .handler(new InteractEventHandler())
                 .bindWith(consumer);
 
@@ -39,30 +39,30 @@ public class SpawnListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(PlayerPickupItemEvent.class)
-                .filter(event ->  this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
+                .filter(event -> this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
                 .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
 
         Events.subscribe(PlayerDropItemEvent.class)
-                .filter(event ->  this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
+                .filter(event -> this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
                 .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
 
         Events.subscribe(EntityDamageEvent.class)
-                .filter(event ->  this.repository.find(event.getEntity().getUniqueId()).get().state == UserState.SPAWN)
+                .filter(event -> this.repository.find(event.getEntity().getUniqueId()).get().state == UserState.SPAWN)
                 .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
 
         Events.subscribe(PlayerItemDamageEvent.class)
-                .filter(event ->  this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
+                .filter(event -> this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.SPAWN)
                 .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
 
         Events.subscribe(EntityDamageByEntityEvent.class)
                 .filter(event ->
                         (this.repository.find(event.getDamager().getUniqueId()).get().state == UserState.SPAWN)
-                        ||
-                        (this.repository.find(event.getEntity().getUniqueId()).get().state == UserState.SPAWN)
+                                ||
+                                (this.repository.find(event.getEntity().getUniqueId()).get().state == UserState.SPAWN)
                 )
                 .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
