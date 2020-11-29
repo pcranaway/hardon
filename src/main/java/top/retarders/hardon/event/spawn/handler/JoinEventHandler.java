@@ -21,7 +21,7 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
         User user = this.repository.find(player.getUniqueId()).get();
 
         // it's already being set on the literal constructor but i'm paranoid
-        user.state = UserState.SPAWN;
+        user.state(UserState.SPAWN);
 
         PlayerUtilities.clear(player);
         PlayerUtilities.resetState(player);

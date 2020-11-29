@@ -35,7 +35,7 @@ public class KitSelectorGui extends Gui {
 
                     kit.equip(getPlayer());
                     user.kit = kit;
-                    user.state = UserState.WARZONE;
+                    user.state(UserState.WARZONE);
                 })));
     }
 

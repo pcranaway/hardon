@@ -36,7 +36,7 @@ public class EquipKitCommandHandler implements FunctionalCommandHandler<Player> 
 
         Kit kit = hasKit.get();
 
-        user.state = UserState.WARZONE;
+        user.state(UserState.WARZONE);
         user.kit = kit;
         kit.equip(context.sender());
     }
