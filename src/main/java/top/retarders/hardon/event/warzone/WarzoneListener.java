@@ -40,10 +40,10 @@ public class WarzoneListener implements TerminableModule {
                 .filter(event -> event.getItem().getItemStack().getType() == Material.MUSHROOM_SOUP)
                 .handler(event -> event.setCancelled(true));
 
-        Events.subscribe(PlayerDropItemEvent.class)
-                .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
-                .filter(event -> event.getItemDrop().getItemStack().getType() == Material.BOWL)
-                .handler(event -> event.getItemDrop().setVelocity(event.getPlayer().getEyeLocation().getDirection().multiply(3)));
+//        Events.subscribe(PlayerDropItemEvent.class)
+//                .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
+//                .filter(event -> event.getItemDrop().getItemStack().getType() == Material.BOWL)
+//                .handler(event -> event.getItemDrop().setVelocity(event.getPlayer().getEyeLocation().getDirection().multiply(3)));
 
         Events.subscribe(PlayerInteractEvent.class)
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_BLOCK)
