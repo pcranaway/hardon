@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import top.retarders.hardon.user.repo.UserRepository;
 
@@ -42,6 +43,10 @@ public class ImprovementsListener implements TerminableModule {
 
         Events.subscribe(EntityDamageEvent.class)
                 .filter(event -> event.getCause() == null || event.getCause() == EntityDamageEvent.DamageCause.FALL)
+                .handler(event -> event.setCancelled(true))
+                .bindWith(consumer);
+
+        Events.subscribe(PlayerItemDamageEvent.class)
                 .handler(event -> event.setCancelled(true))
                 .bindWith(consumer);
 
