@@ -66,6 +66,20 @@ public class SidebarModule implements TerminableModule {
     }
 
     public void update(User user) {
+        if(!user.account.sidebar) {
+            if(user.objective == null) return;
+
+            user.objective.clearScores();
+            user.objective = null;
+
+            return;
+        }
+
+        if(user.objective == null) {
+            this.apply(user);
+            return;
+        }
+
         updater.accept(user, user.objective);
     }
 
