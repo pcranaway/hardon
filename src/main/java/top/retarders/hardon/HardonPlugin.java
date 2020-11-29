@@ -10,6 +10,7 @@ import me.lucko.helper.plugin.ExtendedJavaPlugin;
 import me.lucko.helper.plugin.ap.Plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.EntityType;
 import top.retarders.hardon.command.admin.AdminCommandsModule;
 import top.retarders.hardon.command.kit.KitsCommandsModule;
 import top.retarders.hardon.event.connection.ConnectionListener;
@@ -84,6 +85,13 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         Schedulers.async().runRepeating(() -> {
             Bukkit.getWorld("world").setTime(1000);
         }, 60 * 20L, 60 * 20L);
+
+        // schedule clear items every 15 seconds
+        Schedulers.async().runRepeating(() -> {
+            Bukkit.getWorld("world").getEntities().stream().filter(entity -> entity.getType() == EntityType.DROPPED_ITEM).forEach(item -> {
+                item.remove();
+            });
+        }, 15 * 20L, 15 * 20L);
     }
 
     @Override
