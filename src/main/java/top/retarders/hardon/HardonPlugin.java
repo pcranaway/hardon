@@ -31,6 +31,7 @@ import top.retarders.hardon.utilities.EntityHider;
         authors = "pcranaway",
         website = "https://retarders.top",
         hardDepends = {
+                "ProtocolLib",
                 "helper",
                 "helper-mongo"
         }
