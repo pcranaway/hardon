@@ -67,6 +67,8 @@ public class User {
     public User state(UserState state) {
         this.state = state;
 
+        System.out.println(this.state.name());
+
         if(this.state == UserState.WARZONE) {
             Helper.service(UserRepository.class).get().users.stream().filter(user -> user.state == UserState.SPAWN).forEach(user -> {
                 Helper.service(EntityHider.class).get().hideEntity(this.toPlayer(), user.toPlayer());
