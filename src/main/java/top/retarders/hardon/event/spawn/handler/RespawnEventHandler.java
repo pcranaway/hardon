@@ -25,6 +25,7 @@ public class RespawnEventHandler implements Consumer<PlayerRespawnEvent> {
         event.setRespawnLocation(player.getWorld().getSpawnLocation());
 
         SpawnItems.ITEMS.forEach(triplet -> event.getPlayer().getInventory().setItem(triplet.second, triplet.first));
+        player.updateInventory();
     }
 
 }

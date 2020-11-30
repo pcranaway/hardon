@@ -55,9 +55,18 @@ public class Kit {
 
             for (Ability ability : Ability.Abilities.ABILITIES) {
                 items = items.stream()
-                        .filter(item -> item != null)
-                        .filter(item -> Objects.equals(item.getItemMeta().getDisplayName(), "[" + ability.getName() + "]"))
-                        .map(item -> ability.getItem())
+//                        .filter(item -> item != null)
+//                        .filter(item -> Objects.equals(item.getItemMeta().getDisplayName(), "[" + ability.getName() + "]"))
+                        .map(item -> {
+
+                            if(item != null) return null;
+                            if(item.getItemMeta().getDisplayName() == "[" + ability.getName() + "]") {
+                                return ability.getItem();
+                            }
+
+                            return item;
+
+                        })
                         .collect(Collectors.toList());
             }
 
