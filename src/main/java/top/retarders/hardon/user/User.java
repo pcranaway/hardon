@@ -1,6 +1,7 @@
 package top.retarders.hardon.user;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.Schedulers;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.external.morphia.Datastore;
 import me.lucko.helper.scoreboard.ScoreboardObjective;
@@ -72,13 +73,15 @@ public class User {
         this.state = state;
 
         System.out.println("new state of " + this.toPlayer().getName() + ": " + this.state.name());
+
         if(this.state == UserState.SPAWN) {
+            Schedulers.sync().runLater(() -> {
+                PlayerUtilities.resetState(toPlayer());
+                PlayerUtilities.clear(toPlayer());
 
-            PlayerUtilities.resetState(toPlayer());
-            PlayerUtilities.clear(toPlayer());
-
-            SpawnItems.ITEMS.forEach(triplet -> this.toPlayer().getInventory().setItem(triplet.second, triplet.first));
+                SpawnItems.ITEMS.forEach(triplet -> this.toPlayer().getInventory().setItem(triplet.second, triplet.first));
 //            this.toPlayer().updateInventory();
+            }, 20L);
         }
 
         return this;
