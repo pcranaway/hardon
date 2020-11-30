@@ -60,6 +60,7 @@ public class Kit {
                         .map(item -> {
 
                             if(item == null) return null;
+                            if(item.getItemMeta().getDisplayName() == null) return item;
 
                             if(item.getItemMeta().getDisplayName().equalsIgnoreCase("[" + ability.getName() + "]")) {
                                 System.out.println(ability.getName());
