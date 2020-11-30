@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import top.retarders.hardon.ability.Ability;
 import top.retarders.hardon.serialization.ItemSerializer;
 
 import java.io.IOException;
@@ -48,7 +49,13 @@ public class Kit {
 
     public ItemStack[] getInventory() {
         try {
-            return ItemSerializer.itemStackArrayFromBase64(this.inventory);
+            List<ItemStack> items = Arrays.asList(ItemSerializer.itemStackArrayFromBase64(this.inventory));
+
+            Ability.Abilities.ABILITIES.forEach(ability -> {
+                items.stream().filter(item -> item.getItemMeta().getDisplayName() == "[" + ability.getName() + "]").map(item -> ability.getItem());
+            });
+
+            return items.toArray(new ItemStack[]{});
         } catch (IOException e) {
             e.printStackTrace();
             return new ItemStack[]{};
