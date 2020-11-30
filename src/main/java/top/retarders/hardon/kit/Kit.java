@@ -59,7 +59,7 @@ public class Kit {
 //                        .filter(item -> Objects.equals(item.getItemMeta().getDisplayName(), "[" + ability.getName() + "]"))
                         .map(item -> {
 
-                            if(item != null) return null;
+                            if(item == null) return null;
                             if(item.getItemMeta().getDisplayName() == "[" + ability.getName() + "]") {
                                 return ability.getItem();
                             }
