@@ -1,7 +1,6 @@
 package top.retarders.hardon.user;
 
 import me.lucko.helper.Helper;
-import me.lucko.helper.cooldown.Cooldown;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.external.morphia.Datastore;
 import me.lucko.helper.scoreboard.ScoreboardObjective;
@@ -10,15 +9,11 @@ import org.bukkit.entity.Player;
 import top.retarders.hardon.ability.Ability;
 import top.retarders.hardon.account.Account;
 import top.retarders.hardon.kit.Kit;
-import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
-import top.retarders.hardon.utilities.EntityHider;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
 
 public class User {
 
@@ -30,7 +25,7 @@ public class User {
     public AtomicInteger killstreak;
     public boolean buildmode;
     public ScoreboardObjective objective;
-    private HashMap<Ability, Long> abilityCooldowns;
+    private final HashMap<Ability, Long> abilityCooldowns;
 
     public User(UUID uuid) {
         this.uuid = uuid;
@@ -94,7 +89,7 @@ public class User {
 
         long timeLeft = this.abilityCooldowns.getOrDefault(ability, (long) 0) - System.currentTimeMillis();
 
-        if(timeLeft <= 0) {
+        if (timeLeft <= 0) {
             this.abilityCooldowns.remove(ability);
             return 0;
         }

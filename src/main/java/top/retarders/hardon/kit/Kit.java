@@ -53,7 +53,7 @@ public class Kit {
         try {
             List<ItemStack> items = Arrays.asList(ItemSerializer.itemStackArrayFromBase64(this.inventory));
 
-            for(Ability ability : Ability.Abilities.ABILITIES) {
+            for (Ability ability : Ability.Abilities.ABILITIES) {
                 items = items.stream()
                         .filter(item -> item != null)
                         .filter(item -> Objects.equals(item.getItemMeta().getDisplayName(), "[" + ability.getName() + "]"))

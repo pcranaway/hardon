@@ -8,8 +8,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 import top.retarders.hardon.ability.Ability;
 
-import java.util.HashMap;
-
 
 public class JumpAbility extends Ability {
 

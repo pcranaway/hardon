@@ -21,7 +21,6 @@ import top.retarders.hardon.event.statistics.StatisticsListener;
 import top.retarders.hardon.event.warzone.WarzoneListener;
 import top.retarders.hardon.kit.repo.KitRepository;
 import top.retarders.hardon.sidebar.SidebarModule;
-import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.utilities.EntityHider;
 
