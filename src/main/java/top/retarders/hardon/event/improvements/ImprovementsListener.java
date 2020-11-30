@@ -63,7 +63,10 @@ public class ImprovementsListener implements TerminableModule {
 
         Events.subscribe(PlayerMoveEvent.class)
                 .filter(event -> event.getTo().getY() <= 0)
-                .handler(event -> event.getPlayer().setHealth(0.0))
+                .handler(event -> {
+                    event.getPlayer().setHealth(0.0);
+                    event.getPlayer().spigot().respawn();
+                })
                 .bindWith(consumer);
     }
 }
