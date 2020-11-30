@@ -11,6 +11,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import top.retarders.hardon.user.repo.UserRepository;
 
@@ -58,6 +59,11 @@ public class ImprovementsListener implements TerminableModule {
                     event.setDroppedExp(0);
                     event.getDrops().clear();
                 })
+                .bindWith(consumer);
+
+        Events.subscribe(PlayerMoveEvent.class)
+                .filter(event -> event.getTo().getY() <= 0)
+                .handler(event -> event.getPlayer().setHealth(0.0))
                 .bindWith(consumer);
     }
 }
