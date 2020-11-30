@@ -11,6 +11,7 @@ import top.retarders.hardon.account.Account;
 import top.retarders.hardon.kit.Kit;
 import top.retarders.hardon.spawn.SpawnItems;
 import top.retarders.hardon.user.state.UserState;
+import top.retarders.hardon.utilities.PlayerUtilities;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -70,7 +71,12 @@ public class User {
     public User state(UserState state) {
         this.state = state;
 
+        System.out.println("new state of " + this.toPlayer().getName() + ": " + this.state.name());
         if(this.state == UserState.SPAWN) {
+
+            PlayerUtilities.resetState(toPlayer());
+            PlayerUtilities.clear(toPlayer());
+
             SpawnItems.ITEMS.forEach(triplet -> this.toPlayer().getInventory().setItem(triplet.second, triplet.first));
             this.toPlayer().updateInventory();
         }

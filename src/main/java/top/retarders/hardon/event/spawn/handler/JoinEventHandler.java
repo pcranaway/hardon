@@ -5,8 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
-import top.retarders.hardon.user.state.UserState;
-import top.retarders.hardon.utilities.PlayerUtilities;
 
 import java.util.function.Consumer;
 
@@ -18,12 +16,6 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
     public void accept(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         User user = this.repository.find(player.getUniqueId()).get();
-
-        // it's already being set on the literal constructor but i'm paranoid
-        user.state(UserState.SPAWN);
-
-        PlayerUtilities.clear(player);
-        PlayerUtilities.resetState(player);
     }
 
 }

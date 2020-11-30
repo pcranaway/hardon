@@ -25,9 +25,6 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
 
         User user = new User(player.getUniqueId());
         this.repository.put(user);
-
-        user.state(UserState.SPAWN);
-
         user.loadAccount();
 
         this.sidebarModule.apply(user);
