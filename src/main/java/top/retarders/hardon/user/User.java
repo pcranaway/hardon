@@ -81,7 +81,7 @@ public class User {
 
                 SpawnItems.ITEMS.forEach(triplet -> this.toPlayer().getInventory().setItem(triplet.second, triplet.first));
 //            this.toPlayer().updateInventory();
-            }, 20L);
+            }, 10L);
         }
 
         return this;
