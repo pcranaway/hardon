@@ -18,12 +18,10 @@ public class RespawnEventHandler implements Consumer<PlayerRespawnEvent> {
         Player player = event.getPlayer();
         User user = this.repository.find(player.getUniqueId()).get();
 
-        user.kit = null;
-        user.state(UserState.SPAWN);
-
         event.setRespawnLocation(player.getWorld().getSpawnLocation());
 
-
+        user.kit = null;
+        user.state(UserState.SPAWN);
     }
 
 }
