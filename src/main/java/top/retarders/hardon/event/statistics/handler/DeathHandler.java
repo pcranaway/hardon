@@ -27,6 +27,7 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
             killedAccount.highestKillstreak = killedUser.killstreak.get();
         }
 
+
         killedUser.killstreak.set(0);
 
         if (killed.getLastDamageCause() instanceof EntityDamageByEntityEvent) {
@@ -38,6 +39,10 @@ public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
             killerAccount.kills += 1;
             killerUser.killstreak.incrementAndGet();
+
+            if (killerUser.killstreak.get() > killerAccount.highestKillstreak) {
+                killerAccount.highestKillstreak = killerUser.killstreak.get();
+            }
 
             // TODO: Implement neural network to find the amount of coins the killer should get depending on the stats of the killed player
             int $ = (int) (Math.random() * (250 - 60)) + 60;

@@ -6,6 +6,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import top.retarders.hardon.sidebar.SidebarModule;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
+import top.retarders.hardon.user.state.UserState;
 
 import java.util.function.Consumer;
 
@@ -24,6 +25,8 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
 
         User user = new User(player.getUniqueId());
         this.repository.put(user);
+
+        user.state(UserState.SPAWN);
 
         user.loadAccount();
 

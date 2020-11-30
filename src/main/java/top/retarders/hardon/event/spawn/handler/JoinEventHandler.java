@@ -3,7 +3,6 @@ package top.retarders.hardon.event.spawn.handler;
 import me.lucko.helper.Helper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
-import top.retarders.hardon.spawn.SpawnItems;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
@@ -25,8 +24,6 @@ public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
 
         PlayerUtilities.clear(player);
         PlayerUtilities.resetState(player);
-
-        SpawnItems.ITEMS.forEach(triplet -> event.getPlayer().getInventory().setItem(triplet.second, triplet.first));
     }
 
 }

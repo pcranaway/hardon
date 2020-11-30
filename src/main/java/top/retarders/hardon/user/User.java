@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import top.retarders.hardon.ability.Ability;
 import top.retarders.hardon.account.Account;
 import top.retarders.hardon.kit.Kit;
+import top.retarders.hardon.spawn.SpawnItems;
 import top.retarders.hardon.user.state.UserState;
 
 import java.util.HashMap;
@@ -68,6 +69,11 @@ public class User {
 
     public User state(UserState state) {
         this.state = state;
+
+        if(this.state == UserState.SPAWN) {
+            SpawnItems.ITEMS.forEach(triplet -> this.toPlayer().getInventory().setItem(triplet.second, triplet.first));
+            this.toPlayer().updateInventory();
+        }
 
         return this;
     }
