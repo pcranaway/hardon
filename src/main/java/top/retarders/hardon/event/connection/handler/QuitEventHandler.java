@@ -5,6 +5,7 @@ import me.lucko.helper.mongo.Mongo;
 import org.bukkit.event.player.PlayerQuitEvent;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
+import top.retarders.hardon.utilities.PlayerUtilities;
 
 import java.util.function.Consumer;
 
@@ -16,6 +17,8 @@ public class QuitEventHandler implements Consumer<PlayerQuitEvent> {
     @Override
     public void accept(PlayerQuitEvent event) {
         event.setQuitMessage(null);
+        PlayerUtilities.clear(event.getPlayer());
+        PlayerUtilities.resetState(event.getPlayer());
 
         User user = this.repository.find(event.getPlayer().getUniqueId()).get();
 
