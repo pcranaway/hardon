@@ -9,17 +9,13 @@ import org.bukkit.util.Vector;
 import top.retarders.hardon.ability.Ability;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 
-public class JumpAbility implements Ability {
+public class JumpAbility extends Ability {
 
     private final ItemStack item;
-    private final HashMap<UUID, Long> cooldowns;
 
     public JumpAbility() {
-        this.cooldowns = new HashMap<>();
-
         this.item = new ItemStack(Material.GOLD_HOE);
 
         ItemMeta meta = item.getItemMeta();
@@ -27,7 +23,6 @@ public class JumpAbility implements Ability {
 
         item.setItemMeta(meta);
     }
-
 
     @Override
     public String getName() {
@@ -41,22 +36,12 @@ public class JumpAbility implements Ability {
 
     @Override
     public void use(Player player) {
-        player.setVelocity(player.getEyeLocation().getDirection().add(new Vector(0, 3, 0)));
-        player.sendMessage(ChatColor.AQUA + "You just used the jump ability");
+        player.setVelocity(player.getEyeLocation().getDirection().add(new Vector(0, 2, 0)));
     }
 
     @Override
     public long getCooldown() {
         return 3000;
     }
-
-    @Override
-    public boolean hasCooldown(UUID uuid) {
-        return this.getCooldown(uuid) <= 0;
-    }
-
-    @Override
-    public long getCooldown(UUID uuid) {
-        return this.cooldowns.getOrDefault(uuid, (long) 0);
-    }
 }
+

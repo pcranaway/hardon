@@ -54,6 +54,7 @@ public class WarzoneListener implements TerminableModule {
         Events.subscribe(PlayerInteractEvent.class)
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)
                 .filter(item -> item.getItem() != null)
+                .filter(player -> this.repository.find(player.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
                 .handler(new AbilityHandler());
 
     }

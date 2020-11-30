@@ -6,26 +6,18 @@ import top.retarders.hardon.ability.impl.JumpAbility;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
-public interface Ability {
+public abstract class Ability {
 
-    String getName();
-
-    ItemStack getItem();
-
-    void use(Player player);
-
-    long getCooldown();
-
-    boolean hasCooldown(UUID uuid);
-
-    long getCooldown(UUID uuid);
-
-    class Abilities {
+    public static class Abilities {
         public static List<Ability> ABILITIES = Arrays.asList(
                 new JumpAbility()
         );
     }
+
+    public abstract String getName();
+    public abstract ItemStack getItem();
+    public abstract void use(Player player);
+    public abstract long getCooldown();
 
 }

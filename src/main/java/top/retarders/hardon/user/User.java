@@ -1,17 +1,20 @@
 package top.retarders.hardon.user;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.cooldown.Cooldown;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.external.morphia.Datastore;
 import me.lucko.helper.scoreboard.ScoreboardObjective;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import top.retarders.hardon.ability.Ability;
 import top.retarders.hardon.account.Account;
 import top.retarders.hardon.kit.Kit;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
 import top.retarders.hardon.utilities.EntityHider;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -27,6 +30,7 @@ public class User {
     public AtomicInteger killstreak;
     public boolean buildmode;
     public ScoreboardObjective objective;
+    private HashMap<Ability, Long> abilityCooldowns;
 
     public User(UUID uuid) {
         this.uuid = uuid;
@@ -36,6 +40,7 @@ public class User {
         this.kit = null;
         this.state(UserState.SPAWN);
         this.killstreak = new AtomicInteger(0);
+        this.abilityCooldowns = new HashMap<>();
 
         this.loadAccount();
     }
@@ -70,6 +75,31 @@ public class User {
         this.state = state;
 
         return this;
+    }
+
+    public void addCooldown(Ability ability, long duration) {
+        this.abilityCooldowns.put(ability, System.currentTimeMillis() + duration);
+    }
+
+    public boolean hasCooldown(Ability ability) {
+        return this.getTimeLeft(ability) != 0;
+    }
+
+    public long getTimeLeft(Ability ability) {
+//        if(this.abilityCooldowns.containsKey(ability)) {
+//            if((System.currentTimeMillis() - this.abilityCooldowns.get(ability) <= 0)) {
+//                this.abilityCooldowns.remove(ability);
+//            }
+//        }
+
+        long timeLeft = this.abilityCooldowns.getOrDefault(ability, (long) 0) - System.currentTimeMillis();
+
+        if(timeLeft <= 0) {
+            this.abilityCooldowns.remove(ability);
+            return 0;
+        }
+
+        return timeLeft;
     }
 
 }

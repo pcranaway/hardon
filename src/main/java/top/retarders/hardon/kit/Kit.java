@@ -13,7 +13,9 @@ import top.retarders.hardon.serialization.ItemSerializer;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity(value = "kits", noClassnameStored = true)
@@ -51,9 +53,13 @@ public class Kit {
         try {
             List<ItemStack> items = Arrays.asList(ItemSerializer.itemStackArrayFromBase64(this.inventory));
 
-            Ability.Abilities.ABILITIES.forEach(ability -> {
-                items.stream().filter(item -> item.getItemMeta().getDisplayName() == "[" + ability.getName() + "]").map(item -> ability.getItem());
-            });
+            for(Ability ability : Ability.Abilities.ABILITIES) {
+                items = items.stream()
+                        .filter(item -> item != null)
+                        .filter(item -> Objects.equals(item.getItemMeta().getDisplayName(), "[" + ability.getName() + "]"))
+                        .map(item -> ability.getItem())
+                        .collect(Collectors.toList());
+            }
 
             return items.toArray(new ItemStack[]{});
         } catch (IOException e) {
