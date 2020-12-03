@@ -11,6 +11,8 @@ public class Account {
     @Id
     public UUID uuid;
 
+    public String name;
+
     public int deaths;
     public int kills;
     public int highestKillstreak;

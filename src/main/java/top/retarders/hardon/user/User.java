@@ -57,6 +57,7 @@ public class User {
         }
 
         account = new Account(this.uuid);
+        account.name = this.toPlayer().getName();
         account.sidebar = true;
         account.deathMessages = true;
         account.globalChat = true;
