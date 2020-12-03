@@ -38,7 +38,8 @@ import top.retarders.hardon.utilities.EntityHider;
         hardDepends = {
                 "ProtocolLib",
                 "helper",
-                "helper-mongo"
+                "helper-mongo",
+                "KtLoader"
         }
 )
 public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
