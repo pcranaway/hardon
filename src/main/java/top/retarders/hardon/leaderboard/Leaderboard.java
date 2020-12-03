@@ -5,6 +5,7 @@ import me.lucko.helper.Helper;
 import top.retarders.hardon.leaderboard.api.LeaderboardPlayer;
 import top.retarders.hardon.leaderboard.api.LeaderboardQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Leaderboard {
@@ -16,6 +17,7 @@ public class Leaderboard {
     public Leaderboard(String name, LeaderboardQuery query) {
         this.name = name;
         this.query = query;
+        this.data = new ArrayList<>();
     }
 
     public void update() {
