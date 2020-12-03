@@ -1,11 +1,18 @@
 package top.retarders.hardon.leaderboard.api;
 
-import retrofit2.Response;
-
-import java.io.IOException;
-import java.util.List;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import me.lucko.helper.Helper;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class LeaderboardQuery {
+
+    private static OkHttpClient client = new OkHttpClient();
+    private static JsonParser jsonParser = Helper.service(JsonParser.class).get();
 
     public final String by;
     public final int limit;
@@ -17,13 +24,27 @@ public class LeaderboardQuery {
         this.reverse = reverse;
     }
 
-    public Response<List<LeaderboardPlayer>> execute() {
-        try {
-            return LeaderboardAPI.instance.getTopPlayers(this.by, this.limit, this.reverse).execute();
-        } catch (IOException e) {
+    public JsonArray execute() {
+        HttpUrl httpUrl = new HttpUrl.Builder()
+                .scheme("http")
+                .host("0.0.0.0")
+                .port(8000)
+                .addPathSegment("get_top_players")
+                .addQueryParameter("by", this.by)
+                .addQueryParameter("limit", String.valueOf(this.limit))
+                .addQueryParameter("reverse", String.valueOf(this.reverse))
+                .build();
+
+        Request request = new Request.Builder().url(httpUrl).build();
+
+        try(Response response = this.client.newCall(request).execute()) {
+
+            return jsonParser.parse(response.body().string()).getAsJsonArray();
+
+        } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
 }

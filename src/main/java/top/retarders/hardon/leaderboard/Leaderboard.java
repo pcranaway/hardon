@@ -1,5 +1,7 @@
 package top.retarders.hardon.leaderboard;
 
+import com.google.gson.Gson;
+import me.lucko.helper.Helper;
 import top.retarders.hardon.leaderboard.api.LeaderboardPlayer;
 import top.retarders.hardon.leaderboard.api.LeaderboardQuery;
 
@@ -17,7 +19,14 @@ public class Leaderboard {
     }
 
     public void update() {
-        this.data = this.query.execute().body();
+        this.data.clear();
+
+        this.query.execute().forEach(playerElem -> {
+            LeaderboardPlayer player = Helper.service(Gson.class).get().fromJson(playerElem, LeaderboardPlayer.class);
+
+            this.data.add(player);
+            System.out.println("added " + player);
+        });
     }
 
 }

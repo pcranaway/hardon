@@ -16,4 +16,14 @@ public class LeaderboardPlayer {
         this.balance = balance;
     }
 
+    @Override
+    public String toString() {
+        return "LeaderboardPlayer{" +
+                "name='" + name + '\'' +
+                ", kills=" + kills +
+                ", deaths=" + deaths +
+                ", highestKillstreak=" + highestKillstreak +
+                ", balance=" + balance +
+                '}';
+    }
 }
