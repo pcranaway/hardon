@@ -12,7 +12,6 @@ import me.lucko.helper.plugin.ap.Plugin;
 import me.lucko.helper.terminable.module.TerminableModule;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import top.retarders.hardon.command.admin.AdminCommandsModule;
@@ -24,6 +23,7 @@ import top.retarders.hardon.event.spawn.SpawnListener;
 import top.retarders.hardon.event.statistics.StatisticsListener;
 import top.retarders.hardon.event.warzone.WarzoneListener;
 import top.retarders.hardon.kit.repo.KitRepository;
+import top.retarders.hardon.leaderboard.LeaderboardModule;
 import top.retarders.hardon.sidebar.SidebarModule;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.utilities.EntityHider;
@@ -62,6 +62,8 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
 
         provideService(ConfigurationSection.class, getConfig());
 
+        provideService(LeaderboardModule.class, new LeaderboardModule());
+
         provideService(JsonParser.class, new JsonParser());
 
         provideService(UserRepository.class, new UserRepository());
@@ -84,7 +86,8 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
                 new KitsCommandsModule(),
                 new AdminCommandsModule(),
                 // other
-                Helper.service(SidebarModule.class).get()
+                Helper.service(SidebarModule.class).get(),
+                Helper.service(LeaderboardModule.class).get()
         );
 
 
