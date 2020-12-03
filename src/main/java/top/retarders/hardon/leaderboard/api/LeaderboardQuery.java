@@ -1,7 +1,6 @@
 package top.retarders.hardon.leaderboard.api;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.lucko.helper.Helper;
 import okhttp3.HttpUrl;

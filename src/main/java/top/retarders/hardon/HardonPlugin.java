@@ -63,10 +63,10 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
 
         provideService(ConfigurationSection.class, getConfig());
 
-        provideService(LeaderboardModule.class, new LeaderboardModule());
-
         provideService(Gson.class, new Gson());
         provideService(JsonParser.class, new JsonParser());
+
+        provideService(LeaderboardModule.class, new LeaderboardModule());
 
         provideService(UserRepository.class, new UserRepository());
         provideService(KitRepository.class, new KitRepository());
