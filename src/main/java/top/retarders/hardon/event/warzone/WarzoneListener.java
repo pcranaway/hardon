@@ -27,7 +27,7 @@ public class WarzoneListener implements TerminableModule {
     private final UserRepository repository = Helper.service(UserRepository.class).get();
 
     private static final List<Material> NO_DROP = Arrays.asList(
-            Material.BOWL,
+            Material.MUSHROOM_SOUP,
             Material.DIAMOND_SWORD,
             Material.GOLD_SWORD,
             Material.IRON_SWORD,
