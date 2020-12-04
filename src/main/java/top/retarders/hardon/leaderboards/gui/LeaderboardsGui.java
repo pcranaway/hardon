@@ -12,7 +12,7 @@ public class LeaderboardsGui extends Gui {
             .mask("000000000");
 
     public LeaderboardsGui(Player player) {
-        super(player, 6, "KitPvP Leaderboard");
+        super(player, 6, "Leaderboard");
     }
 
     @Override
