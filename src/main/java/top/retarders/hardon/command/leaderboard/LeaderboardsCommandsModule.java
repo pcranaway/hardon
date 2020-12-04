@@ -13,7 +13,8 @@ public class LeaderboardsCommandsModule implements TerminableModule {
                 .assertPlayer()
                 .assertUsage("<leaderboard>")
                 .description("Shows a leaderboard")
-                .handler(new LeaderboardCommandHandler());
+                .handler(new LeaderboardCommandHandler())
+                .registerAndBind(consumer, "lb", "leaderboard");
     }
 
 }
