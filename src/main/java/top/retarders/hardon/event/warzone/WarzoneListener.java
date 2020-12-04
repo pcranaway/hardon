@@ -5,6 +5,7 @@ import me.lucko.helper.Helper;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;
 import org.bukkit.Material;
+import org.bukkit.block.Sign;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -47,6 +48,7 @@ public class WarzoneListener implements TerminableModule {
         Events.subscribe(PlayerInteractEvent.class)
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_BLOCK)
                 .filter(event -> event.getClickedBlock().getType() == Material.SIGN || event.getClickedBlock().getType() == Material.WALL_SIGN || event.getClickedBlock().getType() == Material.SIGN_POST)
+                .filter(event -> ((Sign) event.getClickedBlock().getState()).getLine(0).equalsIgnoreCase("[Refill]"))
                 .handler(new RefillSignHandler());
 
         Events.subscribe(PlayerInteractEvent.class)
