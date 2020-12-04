@@ -49,6 +49,7 @@ public class WarzoneListener implements TerminableModule {
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_BLOCK)
                 .filter(event -> event.getClickedBlock().getType() == Material.SIGN || event.getClickedBlock().getType() == Material.WALL_SIGN || event.getClickedBlock().getType() == Material.SIGN_POST)
                 .filter(event -> ((Sign) event.getClickedBlock().getState()).getLine(0).equalsIgnoreCase("[Refill]"))
+                .filter(event -> this.repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
                 .handler(new RefillSignHandler());
 
         Events.subscribe(PlayerInteractEvent.class)
