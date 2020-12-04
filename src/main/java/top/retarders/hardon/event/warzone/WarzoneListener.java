@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import top.retarders.hardon.event.warzone.handler.AbilityHandler;
@@ -18,9 +19,21 @@ import top.retarders.hardon.event.warzone.handler.SoupHandler;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class WarzoneListener implements TerminableModule {
 
     private final UserRepository repository = Helper.service(UserRepository.class).get();
+
+    private static final List<Material> NO_DROP = Arrays.asList(
+            Material.BOWL,
+            Material.DIAMOND_SWORD,
+            Material.GOLD_SWORD,
+            Material.IRON_SWORD,
+            Material.STONE_SWORD,
+            Material.WOOD_SWORD
+    );
 
     @Override
     public void setup(TerminableConsumer consumer) {
@@ -41,10 +54,10 @@ public class WarzoneListener implements TerminableModule {
                 .filter(event -> event.getItem().getItemStack().getType() == Material.MUSHROOM_SOUP)
                 .handler(event -> event.setCancelled(true));
 
-//        Events.subscribe(PlayerDropItemEvent.class)
-//                .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
-//                .filter(event -> event.getItemDrop().getItemStack().getType() == Material.BOWL)
-//                .handler(event -> event.getItemDrop().setVelocity(event.getPlayer().getEyeLocation().getDirection().multiply(3)));
+        Events.subscribe(PlayerDropItemEvent.class)
+                .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
+                .filter(event -> NO_DROP.contains(event.getItemDrop().getItemStack().getType()))
+                .handler(event -> event.setCancelled(true));
 
         Events.subscribe(PlayerInteractEvent.class)
                 .filter(event -> event.getAction() == Action.RIGHT_CLICK_BLOCK)
