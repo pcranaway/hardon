@@ -1,6 +1,6 @@
 package top.retarders.hardon.kit.gui;
 
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.item.ItemStackBuilder;
 import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.scheme.MenuPopulator;
@@ -22,7 +22,7 @@ public class KitListGui extends Gui {
             .mask("000000000")
             .mask("000000011");
 
-    private final KitRepository repository = Helper.service(KitRepository.class).get();
+    private final KitRepository repository = Services.get(KitRepository.class).get();
 
     private final int page;
 

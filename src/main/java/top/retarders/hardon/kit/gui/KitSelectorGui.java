@@ -1,6 +1,6 @@
 package top.retarders.hardon.kit.gui;
 
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.item.ItemStackBuilder;
 import me.lucko.helper.menu.Gui;
 import org.bukkit.ChatColor;
@@ -12,8 +12,8 @@ import top.retarders.hardon.user.state.UserState;
 
 public class KitSelectorGui extends Gui {
 
-    private final KitRepository kitRepository = Helper.service(KitRepository.class).get();
-    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
+    private final KitRepository kitRepository = Services.get(KitRepository.class).get();
+    private final UserRepository userRepository = Services.get(UserRepository.class).get();
 
     public KitSelectorGui(Player player) {
         super(player, 3, "Kit Selector");

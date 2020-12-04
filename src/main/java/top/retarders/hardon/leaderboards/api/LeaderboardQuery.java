@@ -2,7 +2,7 @@ package top.retarders.hardon.leaderboards.api;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,7 +11,7 @@ import okhttp3.Response;
 public class LeaderboardQuery {
 
     private static OkHttpClient client = new OkHttpClient();
-    private static JsonParser jsonParser = Helper.service(JsonParser.class).get();
+    private static JsonParser jsonParser = Services.get(JsonParser.class).get();
 
     public final String by;
     public final int limit;

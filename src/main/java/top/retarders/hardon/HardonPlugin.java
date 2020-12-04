@@ -2,8 +2,8 @@ package top.retarders.hardon;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
-import me.lucko.helper.Helper;
 import me.lucko.helper.Schedulers;
+import me.lucko.helper.Services;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.MongoDatabaseCredentials;
 import me.lucko.helper.mongo.MongoProvider;
@@ -91,8 +91,8 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
                 new AdminCommandsModule(),
                 new LeaderboardsCommandsModule(),
                 // other
-                Helper.service(SidebarModule.class).get(),
-                Helper.service(LeaderboardsModule.class).get()
+                Services.get(SidebarModule.class).get(),
+                Services.get(LeaderboardsModule.class).get()
         );
 
 

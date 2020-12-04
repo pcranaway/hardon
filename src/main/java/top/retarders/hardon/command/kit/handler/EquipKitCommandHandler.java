@@ -1,6 +1,7 @@
 package top.retarders.hardon.command.kit.handler;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.command.context.CommandContext;
 import me.lucko.helper.command.functional.FunctionalCommandHandler;
 import org.bukkit.entity.Player;
@@ -14,8 +15,8 @@ import java.util.Optional;
 
 public class EquipKitCommandHandler implements FunctionalCommandHandler<Player> {
 
-    private final KitRepository kitRepository = Helper.service(KitRepository.class).get();
-    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
+    private final KitRepository kitRepository = Services.get(KitRepository.class).get();
+    private final UserRepository userRepository = Services.get(UserRepository.class).get();
 
     @Override
     public void handle(CommandContext<Player> context) {

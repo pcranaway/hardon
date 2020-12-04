@@ -2,6 +2,7 @@ package top.retarders.hardon.event.spawn;
 
 import me.lucko.helper.Events;
 import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;
 import org.bukkit.event.block.Action;
@@ -17,7 +18,7 @@ import top.retarders.hardon.user.state.UserState;
 
 public class SpawnListener implements TerminableModule {
 
-    private final UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Services.get(UserRepository.class).get();
 
     @Override
     public void setup(TerminableConsumer consumer) {

@@ -1,6 +1,6 @@
 package top.retarders.hardon.leaderboards.gui;
 
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.item.ItemStackBuilder;
 import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.scheme.MenuPopulator;
@@ -17,7 +17,7 @@ public class LeaderboardsGui extends Gui {
             .mask("001010100")
             .mask("000010000");
 
-    private static LeaderboardsModule leaderboardsModule = Helper.service(LeaderboardsModule.class).get();
+    private static LeaderboardsModule leaderboardsModule = Services.get(LeaderboardsModule.class).get();
 
     public LeaderboardsGui(Player player) {
         super(player, 3, "Leaderboard");

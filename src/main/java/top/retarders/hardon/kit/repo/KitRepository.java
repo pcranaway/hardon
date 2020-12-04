@@ -1,6 +1,6 @@
 package top.retarders.hardon.kit.repo;
 
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.external.morphia.Datastore;
 import top.retarders.hardon.kit.Kit;
@@ -16,7 +16,7 @@ public class KitRepository implements Repository<Kit, String> {
 
     public KitRepository() {
         this.kits = new ArrayList<>();
-        this.datastore = Helper.service(Mongo.class).get().getMorphiaDatastore();
+        this.datastore = Services.get(Mongo.class).get().getMorphiaDatastore();
     }
 
     @Override

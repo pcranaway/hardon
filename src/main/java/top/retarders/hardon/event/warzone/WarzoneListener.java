@@ -1,7 +1,7 @@
 package top.retarders.hardon.event.warzone;
 
 import me.lucko.helper.Events;
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;
 import org.bukkit.ChatColor;
@@ -21,7 +21,7 @@ import top.retarders.hardon.user.state.UserState;
 
 public class WarzoneListener implements TerminableModule {
 
-    private final UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Services.get(UserRepository.class).get();
 
     @Override
     public void setup(TerminableConsumer consumer) {

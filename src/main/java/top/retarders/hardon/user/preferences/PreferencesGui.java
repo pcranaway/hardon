@@ -1,6 +1,6 @@
 package top.retarders.hardon.user.preferences;
 
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.item.ItemStackBuilder;
 import me.lucko.helper.menu.Gui;
 import me.lucko.helper.menu.scheme.MenuPopulator;
@@ -18,7 +18,7 @@ public class PreferencesGui extends Gui {
             .mask("001010100")
             .mask("000000000");
     private final User user;
-    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
+    private final UserRepository userRepository = Services.get(UserRepository.class).get();
 
     public PreferencesGui(Player player) {
         super(player, 3, "Preferences");

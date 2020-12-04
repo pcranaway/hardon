@@ -1,6 +1,7 @@
 package top.retarders.hardon.command.admin.handler;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.command.context.CommandContext;
 import me.lucko.helper.command.functional.FunctionalCommandHandler;
 import org.bukkit.entity.Player;
@@ -9,7 +10,7 @@ import top.retarders.hardon.user.repo.UserRepository;
 
 public class BuildModeCommandHandler implements FunctionalCommandHandler<Player> {
 
-    private final UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Services.get(UserRepository.class).get();
 
     @Override
     public void handle(CommandContext<Player> context) {

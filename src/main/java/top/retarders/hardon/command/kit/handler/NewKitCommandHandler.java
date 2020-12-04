@@ -1,6 +1,7 @@
 package top.retarders.hardon.command.kit.handler;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.command.context.CommandContext;
 import me.lucko.helper.command.functional.FunctionalCommandHandler;
 import org.bukkit.ChatColor;
@@ -11,7 +12,7 @@ import top.retarders.hardon.kit.repo.KitRepository;
 
 public class NewKitCommandHandler implements FunctionalCommandHandler<Player> {
 
-    private final KitRepository repository = Helper.service(KitRepository.class).get();
+    private final KitRepository repository = Services.get(KitRepository.class).get();
 
     @Override
     public void handle(CommandContext<Player> context) {

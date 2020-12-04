@@ -1,6 +1,6 @@
 package top.retarders.hardon.event.warzone.handler;
 
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 public class AbilityHandler implements Consumer<PlayerInteractEvent> {
 
-    private final UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Services.get(UserRepository.class).get();
 
     @Override
     public void accept(PlayerInteractEvent event) {

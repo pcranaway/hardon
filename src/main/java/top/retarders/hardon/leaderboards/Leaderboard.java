@@ -1,7 +1,7 @@
 package top.retarders.hardon.leaderboards;
 
 import com.google.gson.Gson;
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import top.retarders.hardon.leaderboards.api.LeaderboardPlayer;
 import top.retarders.hardon.leaderboards.api.LeaderboardQuery;
 
@@ -24,7 +24,7 @@ public class Leaderboard {
         this.data.clear();
 
         this.query.execute().forEach(playerElem -> {
-            LeaderboardPlayer player = Helper.service(Gson.class).get().fromJson(playerElem, LeaderboardPlayer.class);
+            LeaderboardPlayer player = Services.get(Gson.class).get().fromJson(playerElem, LeaderboardPlayer.class);
 
             this.data.add(player);
             System.out.println("added " + player);

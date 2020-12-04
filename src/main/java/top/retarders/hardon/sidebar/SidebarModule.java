@@ -1,6 +1,5 @@
 package top.retarders.hardon.sidebar;
 
-import me.lucko.helper.Helper;
 import me.lucko.helper.Schedulers;
 import me.lucko.helper.Services;
 import me.lucko.helper.scoreboard.Scoreboard;
@@ -20,10 +19,10 @@ import java.util.function.BiConsumer;
 
 public class SidebarModule implements TerminableModule {
 
-    private final ConfigurationSection section = Helper.service(ConfigurationSection.class).get()
+    private final ConfigurationSection section = Services.get(ConfigurationSection.class).get()
             .getConfigurationSection("sidebar");
 
-    private final UserRepository repository = Helper.service(UserRepository.class).get();
+    private final UserRepository repository = Services.get(UserRepository.class).get();
 
     private final Scoreboard scoreboard = Services.load(ScoreboardProvider.class).getScoreboard();
 

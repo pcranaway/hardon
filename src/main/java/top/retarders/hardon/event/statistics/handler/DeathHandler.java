@@ -1,6 +1,6 @@
 package top.retarders.hardon.event.statistics.handler;
 
-import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.text3.Text;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 public class DeathHandler implements Consumer<PlayerDeathEvent> {
 
-    private final UserRepository userRepository = Helper.service(UserRepository.class).get();
+    private final UserRepository userRepository = Services.get(UserRepository.class).get();
 
     @Override
     public void accept(PlayerDeathEvent event) {

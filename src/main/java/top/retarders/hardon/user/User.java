@@ -1,7 +1,7 @@
 package top.retarders.hardon.user;
 
-import me.lucko.helper.Helper;
 import me.lucko.helper.Schedulers;
+import me.lucko.helper.Services;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.mongo.external.morphia.Datastore;
 import me.lucko.helper.scoreboard.ScoreboardObjective;
@@ -44,7 +44,7 @@ public class User {
     }
 
     public Account loadAccount() {
-        Mongo mongo = Helper.service(Mongo.class).get();
+        Mongo mongo = Services.get(Mongo.class).get();
         Datastore datastore = mongo.getMorphiaDatastore();
 
         Account account = datastore.find(Account.class)

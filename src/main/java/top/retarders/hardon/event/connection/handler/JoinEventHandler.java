@@ -1,6 +1,7 @@
 package top.retarders.hardon.event.connection.handler;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import top.retarders.hardon.sidebar.SidebarModule;
@@ -12,8 +13,8 @@ import java.util.function.Consumer;
 
 public class JoinEventHandler implements Consumer<PlayerJoinEvent> {
 
-    private final UserRepository repository = Helper.service(UserRepository.class).get();
-    private final SidebarModule sidebarModule = Helper.service(SidebarModule.class).get();
+    private final UserRepository repository = Services.get(UserRepository.class).get();
+    private final SidebarModule sidebarModule = Services.get(SidebarModule.class).get();
 
     @Override
     public void accept(PlayerJoinEvent event) {

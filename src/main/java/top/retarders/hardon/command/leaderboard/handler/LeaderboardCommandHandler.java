@@ -1,6 +1,7 @@
 package top.retarders.hardon.command.leaderboard.handler;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.command.context.CommandContext;
 import me.lucko.helper.command.functional.FunctionalCommandHandler;
 import org.bukkit.ChatColor;
@@ -18,7 +19,7 @@ public class LeaderboardCommandHandler implements FunctionalCommandHandler<Playe
     public void handle(CommandContext<Player> context) {
         String leaderboardName = context.arg(0).parse(String.class).get();
 
-        Optional<Leaderboard> hasLeaderboard = Helper.service(LeaderboardsModule.class).get().leaderboards
+        Optional<Leaderboard> hasLeaderboard = Services.get(LeaderboardsModule.class).get().leaderboards
                 .stream()
                 .filter(leaderboard -> leaderboard.name.replace(" ", "_").equalsIgnoreCase(leaderboardName))
                 .findFirst();
@@ -27,7 +28,7 @@ public class LeaderboardCommandHandler implements FunctionalCommandHandler<Playe
             context.reply(
                     "&cLeaderboard does not exist, try one of the following",
 
-                    ChatColor.RED + String.join(", ", Helper.service(LeaderboardsModule.class).get().leaderboards
+                    ChatColor.RED + String.join(", ", Services.get(LeaderboardsModule.class).get().leaderboards
                             .stream()
                             .map(leaderboard -> leaderboard.name.toLowerCase().replace(" ", "_"))
                             .collect(Collectors.toList()))

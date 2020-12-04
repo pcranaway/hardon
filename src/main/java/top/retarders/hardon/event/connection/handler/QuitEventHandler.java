@@ -1,6 +1,7 @@
 package top.retarders.hardon.event.connection.handler;
 
 import me.lucko.helper.Helper;
+import me.lucko.helper.Services;
 import me.lucko.helper.mongo.Mongo;
 import org.bukkit.event.player.PlayerQuitEvent;
 import top.retarders.hardon.user.User;
@@ -11,8 +12,8 @@ import java.util.function.Consumer;
 
 public class QuitEventHandler implements Consumer<PlayerQuitEvent> {
 
-    private final UserRepository repository = Helper.service(UserRepository.class).get();
-    private final Mongo mongo = Helper.service(Mongo.class).get();
+    private final UserRepository repository = Services.get(UserRepository.class).get();
+    private final Mongo mongo = Services.get(Mongo.class).get();
 
     @Override
     public void accept(PlayerQuitEvent event) {
