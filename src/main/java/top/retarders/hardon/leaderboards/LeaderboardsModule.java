@@ -20,6 +20,10 @@ public class LeaderboardsModule implements TerminableModule {
             new Leaderboard("Highest Killstreak", new LeaderboardQuery("highestKillstreak", 3, false))
     );
 
+    public Leaderboard find(String name) {
+        return this.leaderboards.stream().filter(leaderboard -> leaderboard.name.replace(" ", "_").equalsIgnoreCase(name)).findFirst().orElse(null);
+    }
+
     @Override
     public void setup(TerminableConsumer consumer) {
 //        Schedulers.async().runRepeating(this::refreshLeaderboards, 5 * 60 * 20L, 5 * 60 * 20L).bindWith(consumer);
