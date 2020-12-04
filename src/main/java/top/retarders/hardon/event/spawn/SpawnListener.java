@@ -59,6 +59,7 @@ public class SpawnListener implements TerminableModule {
                 .bindWith(consumer);
 
         Events.subscribe(EntityDamageByEntityEvent.class)
+                .filter(event -> event.getDamager() != null)
                 .filter(event ->
                         (this.repository.find(event.getDamager().getUniqueId()).get().state == UserState.SPAWN)
                                 ||
