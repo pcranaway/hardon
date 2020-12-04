@@ -7,7 +7,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import top.retarders.hardon.sidebar.SidebarModule;
 import top.retarders.hardon.user.User;
 import top.retarders.hardon.user.repo.UserRepository;
-import top.retarders.hardon.user.state.UserState;
 
 import java.util.function.Consumer;
 

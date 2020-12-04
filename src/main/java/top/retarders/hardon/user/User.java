@@ -21,14 +21,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class User {
 
     public final UUID uuid;
+    private final HashMap<Ability, Long> abilityCooldowns;
     public Account account;
-
     public UserState state;
     public Kit kit;
     public AtomicInteger killstreak;
     public boolean buildmode;
     public ScoreboardObjective objective;
-    private final HashMap<Ability, Long> abilityCooldowns;
 
     public User(UUID uuid) {
         this.uuid = uuid;
@@ -75,7 +74,7 @@ public class User {
 
         System.out.println("new state of " + this.toPlayer().getName() + ": " + this.state.name());
 
-        if(this.state == UserState.SPAWN) {
+        if (this.state == UserState.SPAWN) {
             Schedulers.sync().runLater(() -> {
                 PlayerUtilities.resetState(toPlayer());
                 PlayerUtilities.clear(toPlayer());

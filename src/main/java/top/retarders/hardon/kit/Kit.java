@@ -13,7 +13,6 @@ import top.retarders.hardon.serialization.ItemSerializer;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -59,10 +58,10 @@ public class Kit {
 //                        .filter(item -> Objects.equals(item.getItemMeta().getDisplayName(), "[" + ability.getName() + "]"))
                         .map(item -> {
 
-                            if(item == null) return null;
-                            if(item.getItemMeta().getDisplayName() == null) return item;
+                            if (item == null) return null;
+                            if (item.getItemMeta().getDisplayName() == null) return item;
 
-                            if(item.getItemMeta().getDisplayName().equalsIgnoreCase("[" + ability.getName() + "]")) {
+                            if (item.getItemMeta().getDisplayName().equalsIgnoreCase("[" + ability.getName() + "]")) {
                                 return ability.getItem();
                             }
 

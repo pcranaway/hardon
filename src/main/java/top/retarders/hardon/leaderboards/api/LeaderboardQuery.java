@@ -10,8 +10,8 @@ import okhttp3.Response;
 
 public class LeaderboardQuery {
 
-    private static OkHttpClient client = new OkHttpClient();
-    private static JsonParser jsonParser = Services.get(JsonParser.class).get();
+    private static final OkHttpClient client = new OkHttpClient();
+    private static final JsonParser jsonParser = Services.get(JsonParser.class).get();
 
     public final String by;
     public final int limit;
@@ -36,7 +36,7 @@ public class LeaderboardQuery {
 
         Request request = new Request.Builder().url(httpUrl).build();
 
-        try(Response response = this.client.newCall(request).execute()) {
+        try (Response response = client.newCall(request).execute()) {
 
             return jsonParser.parse(response.body().string()).getAsJsonArray();
 

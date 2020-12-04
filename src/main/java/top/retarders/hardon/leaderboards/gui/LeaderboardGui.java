@@ -42,9 +42,10 @@ public class LeaderboardGui extends Gui {
 
     @Override
     public void redraw() {
-        if(!this.isFirstDraw()) return;
+        if (!this.isFirstDraw()) return;
 
-        this.fillWith(ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(15).build(() -> {}));
+        this.fillWith(ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(15).build(() -> {
+        }));
 
         MenuPopulator populator = BUTTONS.newPopulator(this);
 
@@ -60,7 +61,8 @@ public class LeaderboardGui extends Gui {
                     .lore(color + "Highest Killstreak:" + ChatColor.GRAY + " " + player.highestKillstreak)
                     .lore(color + "Deaths:" + ChatColor.GRAY + " " + player.deaths)
                     .lore(color + "Balance:" + ChatColor.GRAY + " $" + player.balance)
-                    .build(() -> {}));
+                    .build(() -> {
+                    }));
         });
 
         this.leaderboard.data.forEach(player -> {
@@ -70,7 +72,8 @@ public class LeaderboardGui extends Gui {
 
             populator.accept(ItemStackBuilder.of(block)
                     .name(color + "#" + index)
-                    .build(() -> {}));
+                    .build(() -> {
+                    }));
         });
 
         populator.accept(ItemStackBuilder.of(Material.FEATHER)

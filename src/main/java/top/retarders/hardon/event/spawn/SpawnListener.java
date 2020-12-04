@@ -1,7 +1,6 @@
 package top.retarders.hardon.event.spawn;
 
 import me.lucko.helper.Events;
-import me.lucko.helper.Helper;
 import me.lucko.helper.Services;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;

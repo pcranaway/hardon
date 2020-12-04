@@ -1,6 +1,5 @@
 package top.retarders.hardon.event.connection.handler;
 
-import me.lucko.helper.Helper;
 import me.lucko.helper.Services;
 import me.lucko.helper.mongo.Mongo;
 import org.bukkit.event.player.PlayerQuitEvent;

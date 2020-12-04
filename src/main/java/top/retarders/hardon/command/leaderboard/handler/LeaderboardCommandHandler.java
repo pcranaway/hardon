@@ -1,6 +1,5 @@
 package top.retarders.hardon.command.leaderboard.handler;
 
-import me.lucko.helper.Helper;
 import me.lucko.helper.Services;
 import me.lucko.helper.command.context.CommandContext;
 import me.lucko.helper.command.functional.FunctionalCommandHandler;
@@ -24,7 +23,7 @@ public class LeaderboardCommandHandler implements FunctionalCommandHandler<Playe
                 .filter(leaderboard -> leaderboard.name.replace(" ", "_").equalsIgnoreCase(leaderboardName))
                 .findFirst();
 
-        if(!hasLeaderboard.isPresent()) {
+        if (!hasLeaderboard.isPresent()) {
             context.reply(
                     "&cLeaderboard does not exist, try one of the following",
 
