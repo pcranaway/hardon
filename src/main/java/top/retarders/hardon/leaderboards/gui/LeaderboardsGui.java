@@ -27,6 +27,8 @@ public class LeaderboardsGui extends Gui {
     public void redraw() {
         if(!this.isFirstDraw()) return;
 
+        this.fillWith(ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(15).build(() -> {}));
+
         MenuPopulator populator = BUTTONS.newPopulator(this);
 
         populator.accept(ItemStackBuilder.of(Material.DIAMOND_SWORD)
@@ -53,8 +55,6 @@ public class LeaderboardsGui extends Gui {
                 .name("&4&lMost Deaths")
                 .lore("&7Click to view the players with the most deaths")
                 .build(() -> new LeaderboardGui(this.getPlayer(), this.leaderboardsModule.find("most_deaths")).open()));
-
-        this.fillWith(ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(15).build(() -> {}));
     }
 
 }

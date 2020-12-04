@@ -44,6 +44,8 @@ public class LeaderboardGui extends Gui {
     public void redraw() {
         if(!this.isFirstDraw()) return;
 
+        this.fillWith(ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(15).build(() -> {}));
+
         MenuPopulator populator = BUTTONS.newPopulator(this);
 
         this.leaderboard.data.forEach(player -> {
@@ -76,7 +78,6 @@ public class LeaderboardGui extends Gui {
                 .lore("&7Click to go back")
                 .build(() -> new LeaderboardsGui(this.getPlayer()).open()));
 
-        this.fillWith(ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(15).build(() -> {}));
     }
 
 }
