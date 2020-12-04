@@ -19,22 +19,9 @@ import top.retarders.hardon.event.warzone.handler.SoupHandler;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.user.state.UserState;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class WarzoneListener implements TerminableModule {
 
     private final UserRepository repository = Helper.service(UserRepository.class).get();
-
-    private static final List<Material> NO_DROP = Arrays.asList(
-            Material.MUSHROOM_SOUP,
-            Material.DIAMOND_SWORD,
-            Material.GOLD_SWORD,
-            Material.IRON_SWORD,
-            Material.STONE_SWORD,
-            Material.WOOD_SWORD,
-            Material.GOLD_HOE
-    );
 
     @Override
     public void setup(TerminableConsumer consumer) {
@@ -52,12 +39,12 @@ public class WarzoneListener implements TerminableModule {
 
         Events.subscribe(PlayerPickupItemEvent.class)
                 .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
-                .filter(event -> event.getItem().getItemStack().getType() != Material.MUSHROOM_SOUP)
+//                .filter(event -> event.getItem().getItemStack().getType() != Material.MUSHROOM_SOUP)
                 .handler(event -> event.setCancelled(true));
 
         Events.subscribe(PlayerDropItemEvent.class)
                 .filter(event -> repository.find(event.getPlayer().getUniqueId()).get().state == UserState.WARZONE)
-                .filter(event -> NO_DROP.contains(event.getItemDrop().getItemStack().getType()))
+                .filter(event -> event.getItemDrop().getItemStack().getType() != Material.MUSHROOM_SOUP)
                 .handler(event -> event.setCancelled(true));
 
         Events.subscribe(PlayerInteractEvent.class)
