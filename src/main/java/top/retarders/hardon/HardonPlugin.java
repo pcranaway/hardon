@@ -24,7 +24,7 @@ import top.retarders.hardon.event.spawn.SpawnListener;
 import top.retarders.hardon.event.statistics.StatisticsListener;
 import top.retarders.hardon.event.warzone.WarzoneListener;
 import top.retarders.hardon.kit.repo.KitRepository;
-import top.retarders.hardon.leaderboard.LeaderboardModule;
+import top.retarders.hardon.leaderboards.LeaderboardsModule;
 import top.retarders.hardon.sidebar.SidebarModule;
 import top.retarders.hardon.user.repo.UserRepository;
 import top.retarders.hardon.utilities.EntityHider;
@@ -67,7 +67,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
         provideService(Gson.class, new Gson());
         provideService(JsonParser.class, new JsonParser());
 
-        provideService(LeaderboardModule.class, new LeaderboardModule());
+        provideService(LeaderboardsModule.class, new LeaderboardsModule());
 
         provideService(UserRepository.class, new UserRepository());
         provideService(KitRepository.class, new KitRepository());
@@ -90,7 +90,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
                 new AdminCommandsModule(),
                 // other
                 Helper.service(SidebarModule.class).get(),
-                Helper.service(LeaderboardModule.class).get()
+                Helper.service(LeaderboardsModule.class).get()
         );
 
 

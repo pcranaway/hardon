@@ -1,9 +1,9 @@
-package top.retarders.hardon.leaderboard;
+package top.retarders.hardon.leaderboards;
 
 import com.google.gson.Gson;
 import me.lucko.helper.Helper;
-import top.retarders.hardon.leaderboard.api.LeaderboardPlayer;
-import top.retarders.hardon.leaderboard.api.LeaderboardQuery;
+import top.retarders.hardon.leaderboards.api.LeaderboardPlayer;
+import top.retarders.hardon.leaderboards.api.LeaderboardQuery;
 
 import java.util.ArrayList;
 import java.util.List;

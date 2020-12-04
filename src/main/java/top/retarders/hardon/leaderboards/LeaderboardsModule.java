@@ -1,15 +1,15 @@
-package top.retarders.hardon.leaderboard;
+package top.retarders.hardon.leaderboards;
 
 import me.lucko.helper.Services;
 import me.lucko.helper.mongo.Mongo;
 import me.lucko.helper.terminable.TerminableConsumer;
 import me.lucko.helper.terminable.module.TerminableModule;
-import top.retarders.hardon.leaderboard.api.LeaderboardQuery;
+import top.retarders.hardon.leaderboards.api.LeaderboardQuery;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class LeaderboardModule implements TerminableModule {
+public class LeaderboardsModule implements TerminableModule {
 
     private Mongo mongo = Services.get(Mongo.class).get();
 

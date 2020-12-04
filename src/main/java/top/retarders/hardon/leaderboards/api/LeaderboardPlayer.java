@@ -1,4 +1,4 @@
-package top.retarders.hardon.leaderboard.api;
+package top.retarders.hardon.leaderboards.api;
 
 public class LeaderboardPlayer {
 
