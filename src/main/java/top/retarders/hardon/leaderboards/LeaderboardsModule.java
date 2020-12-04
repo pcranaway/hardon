@@ -13,7 +13,7 @@ public class LeaderboardsModule implements TerminableModule {
 
     private Mongo mongo = Services.get(Mongo.class).get();
 
-    private List<Leaderboard> leaderboards = Arrays.asList(
+    public List<Leaderboard> leaderboards = Arrays.asList(
             new Leaderboard("Most Kills", new LeaderboardQuery("kills", 3, false)),
             new Leaderboard("Most Deaths", new LeaderboardQuery("deaths", 3, false)),
             new Leaderboard("Richest", new LeaderboardQuery("balance", 3, false)),

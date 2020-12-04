@@ -17,6 +17,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import top.retarders.hardon.command.admin.AdminCommandsModule;
 import top.retarders.hardon.command.kit.KitsCommandsModule;
+import top.retarders.hardon.command.leaderboard.LeaderboardsCommandsModule;
 import top.retarders.hardon.event.admin.AdminListener;
 import top.retarders.hardon.event.connection.ConnectionListener;
 import top.retarders.hardon.event.improvements.ImprovementsListener;
@@ -88,6 +89,7 @@ public class HardonPlugin extends ExtendedJavaPlugin implements MongoProvider {
                 // commands
                 new KitsCommandsModule(),
                 new AdminCommandsModule(),
+                new LeaderboardsCommandsModule(),
                 // other
                 Helper.service(SidebarModule.class).get(),
                 Helper.service(LeaderboardsModule.class).get()
