@@ -75,6 +75,8 @@ public class LeaderboardGui extends Gui {
                 .name("&7Go back")
                 .lore("&7Click to go back")
                 .build(() -> new LeaderboardsGui(this.getPlayer()).open()));
+
+        this.fillWith(ItemStackBuilder.of(Material.STAINED_GLASS_PANE).data(15).build(() -> {}));
     }
 
 }
