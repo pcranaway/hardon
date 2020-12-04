@@ -18,7 +18,7 @@ public class LeaderboardGui extends Gui {
             .mask("000000000")
             .mask("001010100")
             .mask("001010100")
-            .mask("000000000");
+            .mask("000000001");
 
     private final static HashMap<Integer, ChatColor> POSITION_COLORS = new HashMap<Integer, ChatColor>() {{
         put(1, ChatColor.GOLD);
@@ -70,6 +70,11 @@ public class LeaderboardGui extends Gui {
                     .name(color + "#" + index)
                     .build(() -> {}));
         });
+
+        populator.accept(ItemStackBuilder.of(Material.FEATHER)
+                .name("&7Go back")
+                .lore("&7Click to go back")
+                .build(() -> new LeaderboardsGui(this.getPlayer()).open()));
     }
 
 }
