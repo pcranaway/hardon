@@ -13,16 +13,14 @@ import top.retarders.hardon.leaderboards.LeaderboardsModule;
 public class LeaderboardsGui extends Gui {
 
     private final static MenuScheme BUTTONS = new MenuScheme()
-            .mask("000000000")
             .mask("000010000")
             .mask("001010100")
-            .mask("000010000")
-            .mask("000000000");
+            .mask("000010000");
 
     private static LeaderboardsModule leaderboardsModule = Helper.service(LeaderboardsModule.class).get();
 
     public LeaderboardsGui(Player player) {
-        super(player, 6, "Leaderboard");
+        super(player, 3, "Leaderboard");
     }
 
     @Override
