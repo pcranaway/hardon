@@ -57,7 +57,7 @@ public class LeaderboardGui extends Gui {
                     .lore(color + "Kills:" + ChatColor.GRAY + " " + player.kills)
                     .lore(color + "Highest Killstreak:" + ChatColor.GRAY + " " + player.highestKillstreak)
                     .lore(color + "Deaths:" + ChatColor.GRAY + " " + player.deaths)
-                    .lore(color + "Balance:" + ChatColor.GRAY + " " + player.balance)
+                    .lore(color + "Balance:" + ChatColor.GRAY + " $" + player.balance)
                     .build(() -> {}));
         });
 
