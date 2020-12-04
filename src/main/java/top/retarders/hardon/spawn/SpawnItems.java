@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import top.retarders.hardon.kit.gui.KitSelectorGui;
+import top.retarders.hardon.leaderboards.gui.LeaderboardsGui;
 import top.retarders.hardon.user.preferences.PreferencesGui;
 import top.retarders.hardon.utilities.ImmutableTriplet;
 
@@ -32,12 +33,22 @@ public class SpawnItems {
         new PreferencesGui(player).open();
     };
 
+    public static final ItemStack LEADERBOARDS_ITEM = ItemStackBuilder.of(Material.BOOKSHELF)
+            .name("&7Leaderboards")
+            .lore("&7Right click to open the Leaderboards Menu")
+            .build();
+
+    public static final Consumer<Player> LEADERBOARDS_ACTION = player -> {
+        new LeaderboardsGui(player).open();
+    };
+
     /**
      * A map of all spawn items and the slots they should be placed at
      */
     public static final List<ImmutableTriplet<ItemStack, Integer, Consumer<Player>>> ITEMS = Arrays.asList(
             new ImmutableTriplet<>(PREFERENCES_ITEM, 2, PREFERENCES_ACTION),
-            new ImmutableTriplet<>(KIT_SELECTOR_ITEM, 4, KIT_SELECTOR_ACTION)
+            new ImmutableTriplet<>(KIT_SELECTOR_ITEM, 4, KIT_SELECTOR_ACTION),
+            new ImmutableTriplet<>(LEADERBOARDS_ITEM, 6, LEADERBOARDS_ACTION)
     );
 
     /**
