@@ -29,7 +29,7 @@ public class LeaderboardCommandHandler implements FunctionalCommandHandler<Playe
 
                     ChatColor.RED + String.join(", ", Helper.service(LeaderboardsModule.class).get().leaderboards
                             .stream()
-                            .map(leaderboard -> leaderboard.name)
+                            .map(leaderboard -> leaderboard.name.toLowerCase().replace(" ", "_"))
                             .collect(Collectors.toList()))
             );
             return;
